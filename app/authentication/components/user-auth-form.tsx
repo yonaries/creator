@@ -27,6 +27,20 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       <form onSubmit={onSubmit}>
         <div className="grid gap-2">
           <div className="grid gap-1">
+            <Label className="sr-only" htmlFor="displayName">
+              Display Name
+            </Label>
+            <Input
+              id="displayName"
+              placeholder="Iron Man"
+              type="displayName"
+              autoCapitalize="none"
+              autoComplete="displayName"
+              autoCorrect="off"
+              disabled={isLoading}
+            />
+          </div>
+          <div className="grid gap-1">
             <Label className="sr-only" htmlFor="email">
               Email
             </Label>
