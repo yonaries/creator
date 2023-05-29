@@ -1,12 +1,11 @@
 import "@/app/globals.css";
 import { Metadata } from "next";
 
+import { StyleSwitcher } from "@/components/style-switcher";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 import { fontSans } from "@/lib/fonts";
 import { cn } from "@/lib/utils";
-import { Toaster } from "@/components/ui/toaster";
-import { StyleSwitcher } from "@/components/style-switcher";
-import { TailwindIndicator } from "@/components/tailwind-indicator";
-import { ThemeProvider } from "@/components/theme-provider";
 
 interface RootLayoutProps {
   children: React.ReactNode;
@@ -32,7 +31,6 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <div className="relative flex min-h-screen flex-col">
               <div className="flex-1">{children}</div>
             </div>
-            <TailwindIndicator />
           </ThemeProvider>
           <StyleSwitcher />
           <Toaster />

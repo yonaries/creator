@@ -1,23 +1,33 @@
 import {
   AlertTriangle,
   ArrowRight,
+  Box,
+  Banknote,
+  Bell,
   Check,
   ChevronLeft,
   ChevronRight,
+  ChevronsUpDown,
   ClipboardCheck,
   Copy,
   CreditCard,
   File,
   FileText,
+  Edit,
   HelpCircle,
+  Home,
+  Heart,
   Image,
   Laptop,
+  LogOut,
   Loader2,
   LucideProps,
   Moon,
+  Mail,
   MoreVertical,
   Pizza,
   Plus,
+  PieChart,
   Settings,
   SunMedium,
   Trash,
@@ -25,9 +35,9 @@ import {
   User,
   X,
   type Icon as LucideIcon,
-} from "lucide-react"
+} from "lucide-react";
 
-export type Icon = LucideIcon
+export type Icon = LucideIcon;
 
 export const Icons = {
   logo: (props: LucideProps) => (
@@ -67,6 +77,16 @@ export const Icons = {
   sun: SunMedium,
   moon: Moon,
   laptop: Laptop,
+  home: Home,
+  heart: Heart,
+  banknote: Banknote,
+  pieChart: PieChart,
+  box: Box,
+  edit: Edit,
+  mail: Mail,
+  bell: Bell,
+  upDown: ChevronsUpDown,
+  logOut: LogOut,
   gitHub: (props: LucideProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path
@@ -157,4 +177,4 @@ export const Icons = {
       />
     </svg>
   ),
-}
+};
