@@ -21,6 +21,7 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
     setTimeout(() => {
       redirect("/dashboard");
       setIsLoading(false);
+      redirect("/dashboard");
     }, 3000);
   }
 
