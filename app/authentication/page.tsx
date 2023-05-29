@@ -1,12 +1,10 @@
 import { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
-import { Command } from "lucide-react";
 
-import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
 import { UserAuthForm } from "@/app/authentication/components/user-auth-form";
 import { ModeToggle } from "@/components/mode-toggle";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Authentication",
