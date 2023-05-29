@@ -211,8 +211,8 @@ packages:
     resolution: {integrity: sha512-EvYTiXet5XqweYGClEmpu3BoxmsQ4hkj3QaYA6qEnigCWffTP3vNRwBReTdrwDwo7OoJ3wM8Uoe9Uk4n+d4hfg==}
     dev: false
 
-  /@floating-ui/dom@1.2.8:
-    resolution: {integrity: sha512-XLwhYV90MxiHDq6S0rzFZj00fnDM+A1R9jhSioZoMsa7G0Q0i+Q4x40ajR8FHSdYDE1bgjG45mIWe6jtv9UPmg==}
+  /@floating-ui/dom@1.2.9:
+    resolution: {integrity: sha512-sosQxsqgxMNkV3C+3UqTS6LxP7isRLwX8WMepp843Rb3/b0Wz8+MdUkxJksByip3C2WwLugLHN1b4ibn//zKwQ==}
     dependencies:
       '@floating-ui/core': 1.2.6
     dev: false
@@ -223,7 +223,7 @@ packages:
       react: '>=16.8.0'
       react-dom: '>=16.8.0'
     dependencies:
-      '@floating-ui/dom': 1.2.8
+      '@floating-ui/dom': 1.2.9
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -2031,7 +2031,7 @@ packages:
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
-      browserslist: 4.21.5
+      browserslist: 4.21.7
       caniuse-lite: 1.0.30001489
       fraction.js: 4.2.0
       normalize-range: 0.1.2
@@ -2091,15 +2091,15 @@ packages:
       fill-range: 7.0.1
     dev: false
 
-  /browserslist@4.21.5:
-    resolution: {integrity: sha512-tUkiguQGW7S3IhB7N+c2MV/HZPSCPAAiYBZXLsBhFB/PCy6ZKKsZrmBayHV9fdGV/ARIfJ14NkxKzRDjvp7L6w==}
+  /browserslist@4.21.7:
+    resolution: {integrity: sha512-BauCXrQ7I2ftSqd2mvKHGo85XR0u7Ru3C/Hxsy/0TkfCtjrmAbPdzLGasmoiBxplpDXlPvdjX9u7srIMfgasNA==}
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001489
       electron-to-chromium: 1.4.411
       node-releases: 2.0.12
-      update-browserslist-db: 1.0.11(browserslist@4.21.5)
+      update-browserslist-db: 1.0.11(browserslist@4.21.7)
     dev: false
 
   /bundle-name@3.0.0:
@@ -2514,7 +2514,7 @@ packages:
       eslint: 8.41.0
       eslint-module-utils: 2.8.0(@typescript-eslint/parser@5.59.7)(eslint-import-resolver-node@0.3.7)(eslint-import-resolver-typescript@3.5.5)(eslint@8.41.0)
       eslint-plugin-import: 2.27.5(@typescript-eslint/parser@5.59.7)(eslint-import-resolver-typescript@3.5.5)(eslint@8.41.0)
-      get-tsconfig: 4.5.0
+      get-tsconfig: 4.6.0
       globby: 13.1.4
       is-core-module: 2.12.1
       is-glob: 4.0.3
@@ -2901,8 +2901,10 @@ packages:
       get-intrinsic: 1.2.1
     dev: false
 
-  /get-tsconfig@4.5.0:
-    resolution: {integrity: sha512-MjhiaIWCJ1sAU4pIQ5i5OfOuHHxVo1oYeNsWTON7jxYkod8pHocXeh+SSbmu5OZZZK73B6cbJ2XADzXehLyovQ==}
+  /get-tsconfig@4.6.0:
+    resolution: {integrity: sha512-lgbo68hHTQnFddybKbbs/RDRJnJT5YyGy2kQzVwbq+g67X73i+5MVTval34QxGkOe9X5Ujf1UYpCaphLyltjEg==}
+    dependencies:
+      resolve-pkg-maps: 1.0.0
     dev: false
 
   /glob-parent@5.1.2:
@@ -3963,6 +3965,10 @@ packages:
     engines: {node: '>=4'}
     dev: false
 
+  /resolve-pkg-maps@1.0.0:
+    resolution: {integrity: sha512-seS2Tj26TBVOC2NIc2rOe2y2ZO7efxITtLZcGSOnHHNOQ7CkiUBfw0Iw2ck6xkIhPwLhKNLS8BO+hEpngQlqzw==}
+    dev: false
+
   /resolve@1.22.2:
     resolution: {integrity: sha512-Sb+mjNHOULsBv818T40qSPeRiuWLyaGMa5ewydRLFimneixmVy2zdivRl+AF6jaYPC8ERxGDmFSiqui6SfPd+g==}
     hasBin: true
@@ -4349,13 +4355,13 @@ packages:
     engines: {node: '>=8'}
     dev: false
 
-  /update-browserslist-db@1.0.11(browserslist@4.21.5):
+  /update-browserslist-db@1.0.11(browserslist@4.21.7):
     resolution: {integrity: sha512-dCwEFf0/oT85M1fHBg4F0jtLwJrutGoHSQXCh7u4o2t1drG+c0a9Flnqww6XUKSfQMPpJBRjU8d4RXB09qtvaA==}
     hasBin: true
     peerDependencies:
       browserslist: '>= 4.21.0'
     dependencies:
-      browserslist: 4.21.5
+      browserslist: 4.21.7
       escalade: 3.1.1
       picocolors: 1.0.0
     dev: false
