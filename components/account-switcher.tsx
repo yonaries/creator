@@ -1,8 +1,6 @@
 "use client";
 
-import * as React from "react";
-
-import { Button } from "@/components/ui/button";
+import { Icons } from "@/components/icons";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -15,13 +13,10 @@ import {
   DropdownMenuSubTrigger,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Icons } from "@/components/icons";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import { Separator } from "./ui/separator";
-import { useState } from "react";
-import { UserPlus, Mail, MessageSquare, PlusCircle } from "lucide-react";
 import { useTheme } from "next-themes";
 import Link from "next/link";
+import { useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 export default function AccountSwitcher() {
   const [selectedAccount, setSelectedAccount] = useState<number>(0);
