@@ -30,19 +30,24 @@ const PostTypeDialog = (props: Props) => {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>What are you creating?</DialogTitle>
+          <DialogTitle className="text-center">
+            What are you creating?
+          </DialogTitle>
         </DialogHeader>
         <RadioGroup className="grid grid-cols-3 gap-4">
           {Object.keys(CONTENTTYPE).map((item, index) => (
             <Label
               key={item}
               htmlFor={item}
-              className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-4 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary cursor-pointer capitalize w-24 aspect-square"
+              className="flex flex-col items-center justify-between rounded-md border-2 border-muted bg-popover p-6 hover:bg-accent hover:text-accent-foreground [&:has([data-state=checked])]:border-primary cursor-pointer capitalize"
               onClick={() => labelOnClickHandler(item)}
             >
-              <RadioGroupItem value={item} className=" hidden" />
+              <RadioGroupItem
+                value={item}
+                className=" hidden justify-between"
+              />
               {getIcon(item)}
-              {item.toLocaleLowerCase()}
+              <span className=" mt-2">{item.toLocaleLowerCase()}</span>
             </Label>
           ))}
         </RadioGroup>
