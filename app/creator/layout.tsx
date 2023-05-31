@@ -21,42 +21,42 @@ const sidebarNavItems: {
 }[] = [
   {
     title: "My Page",
-    href: "/dashboard",
+    href: "/creator",
     icon: "home",
   },
   {
-    title: "Supporters",
-    href: "/supporters",
+    title: "Supports",
+    href: "/creator/supports",
     icon: "heart",
   },
   {
     title: "Memberships",
-    href: "/memberships",
+    href: "/creator/memberships",
     icon: "box",
   },
   {
     title: "Messages",
-    href: "/messages",
+    href: "/creator/messages",
     icon: "mail",
   },
   {
     title: "Notifications",
-    href: "/notifications",
+    href: "/creator/notifications",
     icon: "bell",
   },
   {
     title: "Analytics",
-    href: "/analytics",
+    href: "/creator/analytics",
     icon: "pieChart",
   },
   {
-    title: "Payouts",
-    href: "/payouts",
+    title: "Payout",
+    href: "/creator/payout",
     icon: "banknote",
   },
   {
     title: "Settings",
-    href: "/settings",
+    href: "/creator/settings",
     icon: "settings",
   },
 ];
@@ -66,10 +66,10 @@ export default function PageLayout({ children }: RootLayoutProps) {
     <>
       <div className="hidden space-y-6 md:block">
         <div className="flex flex-col space-y-8 lg:flex-row lg:space-y-0">
-          <aside className="p-5 lg:w-1/5 h-screen">
+          <aside className="h-screen p-5 lg:w-1/5">
             <SidebarNav items={sidebarNavItems} />
           </aside>
-          <div className="flex-1 p-10 bg-muted">{children}</div>
+          <div className="flex-1 bg-muted/60 p-10">{children}</div>
         </div>
       </div>
     </>
