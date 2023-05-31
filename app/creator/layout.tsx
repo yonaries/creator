@@ -21,42 +21,42 @@ const sidebarNavItems: {
 }[] = [
   {
     title: "My Page",
-    href: "/dashboard",
+    href: "/creator",
     icon: "home",
   },
   {
-    title: "Supporters",
-    href: "/supporters",
+    title: "Supports",
+    href: "/creator/supports",
     icon: "heart",
   },
   {
     title: "Memberships",
-    href: "/memberships",
+    href: "/creator/memberships",
     icon: "box",
   },
   {
     title: "Messages",
-    href: "/messages",
+    href: "/creator/messages",
     icon: "mail",
   },
   {
     title: "Notifications",
-    href: "/notifications",
+    href: "/creator/notifications",
     icon: "bell",
   },
   {
     title: "Analytics",
-    href: "/analytics",
+    href: "/creator/analytics",
     icon: "pieChart",
   },
   {
-    title: "Payouts",
-    href: "/payouts",
+    title: "Payout",
+    href: "/creator/payout",
     icon: "banknote",
   },
   {
     title: "Settings",
-    href: "/settings",
+    href: "/creator/settings",
     icon: "settings",
   },
 ];
