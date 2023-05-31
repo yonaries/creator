@@ -35,7 +35,7 @@ const CreatePostDialog = (props: Props) => {
           </DialogTitle>
         </DialogHeader>
         <RadioGroup className="grid grid-cols-3 gap-4">
-          {Object.keys(CONTENTTYPE).map((item, index) => (
+          {Object.keys(CONTENTTYPE).map((item) => (
             <Label
               key={item}
               htmlFor={item}
