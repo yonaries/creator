@@ -18,11 +18,11 @@ const Supports = (props: Props) => {
       "Blocked Users",
     ],
     contents: [
-      <Supporters />,
-      <Donations />,
-      <Benefits />,
-      <ExitSurvey />,
-      <BlockedUsers />,
+      <Supporters key={Date.now()} />,
+      <Donations key={Date.now()} />,
+      <Benefits key={Date.now()} />,
+      <ExitSurvey key={Date.now()} />,
+      <BlockedUsers key={Date.now()} />,
     ],
   };
   return (
