@@ -7,7 +7,7 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
-import { File, FileAudio, ImageIcon, Pencil, Text, Video } from "lucide-react";
+import { Edit, File, ImageIcon, Mic, Text, Video } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { CONTENTTYPE } from "@/constants/CONTENTTYPE";
@@ -15,7 +15,7 @@ import { useRouter } from "next/navigation";
 
 type Props = {};
 
-const PostTypeDialog = (props: Props) => {
+const CreatePostDialog = (props: Props) => {
   const router = useRouter();
   const labelOnClickHandler = (item: string) => {
     router.push(`/post/create/${item.toLowerCase()}`);
@@ -23,9 +23,9 @@ const PostTypeDialog = (props: Props) => {
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="secondary">
-          <Pencil className="mr-2 h-4 w-4" />
-          Create
+        <Button variant="outline" className="space-x-4">
+          <Edit className="w-4 h-4 mr-4" />
+          Create Post
         </Button>
       </DialogTrigger>
       <DialogContent>
@@ -65,10 +65,10 @@ const getIcon = (type: string) => {
     case "video":
       return <Video />;
     case "audio":
-      return <FileAudio />;
+      return <Mic />;
     case "file":
       return <File />;
   }
 };
 
-export default PostTypeDialog;
+export default CreatePostDialog;
