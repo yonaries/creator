@@ -1,4 +1,4 @@
-export enum CONTENTTYPE {
+export enum CONTENT {
   TEXT = "text",
   IMAGE = "image",
   VIDEO = "video",
