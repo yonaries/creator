@@ -10,7 +10,7 @@ import { Button } from "@/components/ui/button";
 import { Edit, File, ImageIcon, Mic, Text, Video } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { CONTENTTYPE } from "@/constants/CONTENTTYPE";
+import { CONTENT } from "@/constants/CONTENT";
 import { useRouter } from "next/navigation";
 
 type Props = {};
@@ -35,7 +35,7 @@ const CreatePostDialog = (props: Props) => {
           </DialogTitle>
         </DialogHeader>
         <RadioGroup className="grid grid-cols-3 gap-4">
-          {Object.keys(CONTENTTYPE).map((item) => (
+          {Object.keys(CONTENT).map((item) => (
             <Label
               key={item}
               htmlFor={item}
