@@ -4,5 +4,5 @@ export interface AttachementType {
   createdAt: Date;
   updatedAt: Date;
   messageId?: string;
-  postId: string;
+  postId?: string;
 }
