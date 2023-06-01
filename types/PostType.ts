@@ -1,10 +1,12 @@
-// TODO: change status and type to enum
-// TODO: add attachement type
+import { CONTENT } from "@/constants/CONTENT";
+import { POST_STATUS } from "@/constants/POST_STATUS";
+import { AttachementType } from "./AttachementType";
+
 export interface PostType {
   id: string;
   title: string;
-  type: "image" | "video" | "text" | "link" | "file";
-  status: "draft" | "scheduled" | "published";
+  type: CONTENT;
+  status: POST_STATUS;
   createdAt: string;
   updatedAt: string;
   scheduled: string;
@@ -14,5 +16,5 @@ export interface PostType {
   visibleTo?: string[];
   pageId: string;
   projectId?: string;
-  Attachment: [];
+  Attachment: AttachementType[];
 }
