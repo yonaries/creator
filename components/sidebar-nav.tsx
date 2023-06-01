@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { Icons } from "./icons";
 import AccountSwitcher from "./account-switcher";
+import CreatePostDialog from "./create-post-dialog";
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
   items: {
@@ -57,11 +58,7 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
             </div>
           );
         })}
-
-        <Button variant="outline" className="space-x-4">
-          <Icons.edit className="w-4 h-4" />
-          <Link href="/creator">Create Post</Link>
-        </Button>
+        <CreatePostDialog />
       </div>
       <AccountSwitcher />
     </nav>
