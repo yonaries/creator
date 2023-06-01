@@ -46,6 +46,7 @@
     "clsx": "^1.2.1",
     "cmdk": "^0.2.0",
     "date-fns": "^2.30.0",
+    "dayjs": "^1.11.7",
     "eslint": "8.41.0",
     "eslint-config-next": "13.4.4",
     "lucide-react": "^0.221.0",
