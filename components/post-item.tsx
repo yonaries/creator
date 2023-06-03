@@ -84,6 +84,7 @@ const PostItem = ({ post }: Props) => {
             ref={videoRef}
             controls
             loop={false}
+            controlsList="nodownload"
             className="w-full h-80 object-cover rounded-t-sm mb-2"
           />
         );
