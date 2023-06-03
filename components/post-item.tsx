@@ -106,7 +106,6 @@ const PostItem = ({ post }: Props) => {
               post.type.toLowerCase() === "text") && (
               <div
                 className={thumbnailVariants({ type: post.type })}
-                // className="absolute top-0 w-full h-80"
                 ref={thumbnailRef}
                 onClick={() => thumbnailOnClickHandler(post)}
               >
@@ -167,7 +166,7 @@ const PostItem = ({ post }: Props) => {
                   rel="noreferrer"
                   className="capitalize my-1 mr-3 hover:underline"
                 >
-                  <PaperclipIcon size={20} className="inline mr-1" />
+                  <PaperclipIcon className="inline mr-1 w-4 h-5" />
                   {`file ${index + 1}`}
                 </a>
               ))}
@@ -178,11 +177,11 @@ const PostItem = ({ post }: Props) => {
 
       <CardFooter>
         <Trash
-          className="mr-4 my-2 cursor-pointer"
+          className="mr-4 my-2 cursor-pointer w-4 h-5"
           onClick={deletePostHandler}
         />
         <Pencil
-          className="mr-4 my-2 cursor-pointer"
+          className="mr-4 my-2 cursor-pointer w-4 h-5"
           onClick={editPostHandler}
         />
       </CardFooter>
