@@ -74,7 +74,7 @@ const PostItem = ({ post }: Props) => {
             alt={file}
             width={600}
             height={320}
-            className="w-full h-80 object-cover rounded-md mb-2"
+            className="w-full h-80 object-cover rounded-t-sm mb-2"
           />
         );
       case "video":
@@ -84,7 +84,7 @@ const PostItem = ({ post }: Props) => {
             ref={videoRef}
             controls
             loop={false}
-            className="w-full h-80 object-cover rounded-md mb-2"
+            className="w-full h-80 object-cover rounded-t-sm mb-2"
           />
         );
       case "audio":
@@ -97,16 +97,9 @@ const PostItem = ({ post }: Props) => {
   };
 
   return (
-    <Card className=" my-6 mx-auto max-w-2xl w-11/12">
-      <CardHeader>
-        <CardDescription className=" uppercase font-semibold">
-          <p className="text-xs">{dayjs(post.createdAt).fromNow()}</p>
-        </CardDescription>
-        <CardTitle>{post.title}</CardTitle>
-      </CardHeader>
-
-      <CardContent>
-        <div className="relative">
+    <Card className=" my-6 mx-auto max-w-2xl w-11/12 border-none">
+      <CardHeader className="pt-0 px-0">
+        <div className="relative w-full">
           {post.thumbnail &&
             (post.type.toLowerCase() === "video" ||
               post.type.toLowerCase() === "text") && (
@@ -121,7 +114,7 @@ const PostItem = ({ post }: Props) => {
                   alt={post.title}
                   width={600}
                   height={320}
-                  className="w-full h-80 object-cover rounded-md mb-2 cursor-pointer absolute top-0 left-0 z-10"
+                  className="w-full h-80 object-cover rounded-t-sm mb-2 cursor-pointer absolute top-0 left-0 z-10"
                 />
                 {post.thumbnail && post.type.toLowerCase() === "video" && (
                   <PlayCircle
@@ -133,6 +126,17 @@ const PostItem = ({ post }: Props) => {
             )}
 
           {post.file && determineFileType(post.file, post.type)}
+        </div>
+      </CardHeader>
+
+      <CardContent>
+        <div className="mb-4">
+          <CardTitle className="text-3xl font-bold mb-2">
+            {post.title}
+          </CardTitle>
+          <CardDescription className=" uppercase font-semibold text-sm">
+            {dayjs(post.createdAt).fromNow()}
+          </CardDescription>
         </div>
         {post.caption && (
           <>
