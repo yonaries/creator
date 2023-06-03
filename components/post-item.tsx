@@ -23,7 +23,7 @@ const captionVariants = cva("absolute top-0 w-full h-full rounded-md", {
     showMore: {
       true: "hidden",
       false:
-        "bg-gradient-to-b from-transparent from-0% to-gray-50 opacity-90 to-100%",
+        "bg-gradient-to-b from-transparent to-gray-50 opacity-90 dark:to-gray-950",
     },
   },
 });
@@ -114,7 +114,7 @@ const PostItem = ({ post }: Props) => {
                   alt={post.title}
                   width={600}
                   height={320}
-                  className="w-full h-80 object-cover rounded-t-sm mb-2 cursor-pointer absolute top-0 left-0 z-10"
+                  className="w-full h-80 object-cover rounded-t-sm mb-2 cursor-pointer absolute top-0 left-0 z-10 "
                 />
                 {post.thumbnail && post.type.toLowerCase() === "video" && (
                   <PlayCircle
