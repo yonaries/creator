@@ -9,12 +9,22 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import { PostType } from "@/types/PostType";
-import { PaperclipIcon, Pencil, PlayCircle, Trash } from "lucide-react";
+import { Heart, PaperclipIcon, Pencil, PlayCircle, Trash } from "lucide-react";
 import { Button } from "./ui/button";
 import { cva } from "class-variance-authority";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Image from "next/image";
+import { Input } from "./ui/input";
+import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "./react-hook-form/form";
 
 dayjs.extend(relativeTime);
 
@@ -98,7 +108,7 @@ const PostItem = ({ post }: Props) => {
   };
 
   return (
-    <Card className=" my-6 mx-auto max-w-2xl w-11/12 border-none">
+    <Card className=" my-6 mx-auto max-w-2xl w-11/12">
       <CardHeader className="pt-0 px-0">
         <div className="relative w-full">
           {post.thumbnail &&
@@ -175,15 +185,32 @@ const PostItem = ({ post }: Props) => {
         )}
       </CardContent>
 
-      <CardFooter>
-        <Trash
-          className="mr-4 my-2 cursor-pointer w-4 h-5"
-          onClick={deletePostHandler}
-        />
-        <Pencil
-          className="mr-4 my-2 cursor-pointer w-4 h-5"
-          onClick={editPostHandler}
-        />
+      <CardFooter className="flex-col">
+        <div className="flex justify-start items-center w-full">
+          <Button
+            variant="link"
+            className="font-bold text-green-500 pl-0 hover:no-underline hover:text-green-600"
+          >
+            <span className="mr-1">{451} </span> Comments
+          </Button>
+          <Button
+            variant="link"
+            className="text-red-500 font-bold fill-red-500 hover:no-underline hover:text-red-600 hover:fill-red-600"
+          >
+            <Heart className="mr-1 w-4 h-5 fill-inherit" />
+            {451} Likes
+          </Button>
+          <div className="flex-1 flex justify-end items-center">
+            <Pencil
+              className="mr-4 my-2 cursor-pointer w-4 h-5 hover:fill-blue-500 text-blue-500"
+              onClick={editPostHandler}
+            />
+            <Trash
+              className="mr-4 my-2 cursor-pointer w-4 h-5 hover:fill-red-500 text-red-500"
+              onClick={deletePostHandler}
+            />
+          </div>
+        </div>
       </CardFooter>
     </Card>
   );
