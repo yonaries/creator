@@ -28,28 +28,6 @@ import {
 
 dayjs.extend(relativeTime);
 
-const captionVariants = cva("absolute top-0 w-full h-full rounded-md", {
-  variants: {
-    showMore: {
-      true: "hidden",
-      false:
-        "bg-gradient-to-b from-transparent to-gray-50 opacity-90 dark:to-gray-950",
-    },
-  },
-});
-
-const thumbnailVariants = cva("w-full h-80", {
-  variants: {
-    type: {
-      video: "absolute top-0",
-      text: "relative mb-2",
-      image: "relative",
-      audio: "relative",
-      file: "relative",
-    },
-  },
-});
-
 type Props = {
   post: PostType;
 };
@@ -58,13 +36,29 @@ const PostItem = ({ post }: Props) => {
   const [showMore, setShowMore] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const thumbnailRef = useRef<HTMLImageElement>(null);
+  const [isLiked, setIsLiked] = useState(false);
 
-  const deletePostHandler = () => {};
-  const editPostHandler = () => {};
+  const deletePostHandler = () => {
+    // TODO: handle delete post
+  };
+
+  const editPostHandler = () => {
+    // TODO: handle edit post
+  };
+
+  const commentsCounterOnClickHandler = () => {
+    // TODO: handle comments counter click event
+  };
+
+  const likesCounterOnClickHandler = () => {
+    // TODO: handle likes counter click event
+    setIsLiked(!isLiked);
+  };
 
   const showMoreHandler = () => {
     setShowMore(!showMore);
   };
+
   const thumbnailOnClickHandler = (post: PostType) => {
     if (post.type.toLowerCase() === "video" && videoRef.current !== null) {
       if (thumbnailRef.current !== null)
@@ -189,13 +183,15 @@ const PostItem = ({ post }: Props) => {
         <div className="flex justify-start items-center w-full">
           <Button
             variant="link"
+            onClick={commentsCounterOnClickHandler}
             className="font-bold text-green-500 pl-0 hover:no-underline hover:text-green-600"
           >
             <span className="mr-1">{451} </span> Comments
           </Button>
           <Button
             variant="link"
-            className="text-red-500 font-bold fill-red-500 hover:no-underline hover:text-red-600 hover:fill-red-600"
+            onClick={likesCounterOnClickHandler}
+            className={likesVariant({ isLiked })}
           >
             <Heart className="mr-1 w-4 h-5 fill-inherit" />
             {451} Likes
@@ -215,5 +211,39 @@ const PostItem = ({ post }: Props) => {
     </Card>
   );
 };
+
+const captionVariants = cva("absolute top-0 w-full h-full rounded-md", {
+  variants: {
+    showMore: {
+      true: "hidden",
+      false:
+        "bg-gradient-to-b from-transparent to-gray-50 opacity-90 dark:to-gray-950",
+    },
+  },
+});
+
+const thumbnailVariants = cva("w-full h-80", {
+  variants: {
+    type: {
+      video: "absolute top-0",
+      text: "relative mb-2",
+      image: "relative",
+      audio: "relative",
+      file: "relative",
+    },
+  },
+});
+
+const likesVariant = cva(
+  "font-bold hover:no-underline hover:text-red-600 hover:fill-red-600",
+  {
+    variants: {
+      isLiked: {
+        true: "text-red-500 fill-red-500",
+        false: "text-gray-500 fill-gray-500",
+      },
+    },
+  }
+);
 
 export default PostItem;
