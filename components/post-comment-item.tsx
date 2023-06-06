@@ -8,7 +8,7 @@ type Props = {
 
 const PostCommentItem = ({ avatar, name, comment }: Props) => {
   return (
-    <div className="my-2 flex items-start">
+    <div className="my-3 flex items-start">
       <Avatar className="mr-3">
         <AvatarImage src={avatar} alt="@shadcn" />
         <AvatarFallback>
