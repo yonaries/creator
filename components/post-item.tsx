@@ -15,16 +15,8 @@ import { cva } from "class-variance-authority";
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
 import Image from "next/image";
-import { Input } from "./ui/input";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "./react-hook-form/form";
+import PostCommentSection from "./post-comment-section";
+import { Separator } from "./ui/separator";
 
 dayjs.extend(relativeTime);
 
@@ -34,6 +26,7 @@ type Props = {
 
 const PostItem = ({ post }: Props) => {
   const [showMore, setShowMore] = useState(false);
+  const [showComments, setShowComments] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const thumbnailRef = useRef<HTMLImageElement>(null);
   const [isLiked, setIsLiked] = useState(false);
@@ -48,6 +41,7 @@ const PostItem = ({ post }: Props) => {
 
   const commentsCounterOnClickHandler = () => {
     // TODO: handle comments counter click event
+    setShowComments(!showComments);
   };
 
   const likesCounterOnClickHandler = () => {
@@ -78,7 +72,7 @@ const PostItem = ({ post }: Props) => {
             alt={file}
             width={600}
             height={320}
-            className="w-full h-80 object-cover rounded-t-sm mb-2"
+            className="mb-2 h-80 w-full rounded-t-sm object-cover"
           />
         );
       case "video":
@@ -89,12 +83,12 @@ const PostItem = ({ post }: Props) => {
             controls
             loop={false}
             controlsList="nodownload"
-            className="w-full h-80 object-cover rounded-t-sm mb-2"
+            className="mb-2 h-80 w-full rounded-t-sm object-cover"
           />
         );
       case "audio":
         return (
-          <audio src={file} controls loop={false} className="w-full mb-3" />
+          <audio src={file} controls loop={false} className="mb-3 w-full" />
         );
       default:
         break;
@@ -102,8 +96,8 @@ const PostItem = ({ post }: Props) => {
   };
 
   return (
-    <Card className=" my-6 mx-auto max-w-2xl w-11/12">
-      <CardHeader className="pt-0 px-0">
+    <Card className=" mx-auto my-6 w-11/12 max-w-2xl">
+      <CardHeader className="px-0 pt-0">
         <div className="relative w-full">
           {post.thumbnail &&
             (post.type.toLowerCase() === "video" ||
@@ -118,12 +112,12 @@ const PostItem = ({ post }: Props) => {
                   alt={post.title}
                   width={600}
                   height={320}
-                  className="w-full h-80 object-cover rounded-t-sm mb-2 cursor-pointer absolute top-0 left-0 z-10 "
+                  className="absolute left-0 top-0 z-10 mb-2 h-80 w-full cursor-pointer rounded-t-sm object-cover "
                 />
                 {post.thumbnail && post.type.toLowerCase() === "video" && (
                   <PlayCircle
                     size={64}
-                    className="absolute z-20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
+                    className="absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2 cursor-pointer"
                   />
                 )}
               </div>
@@ -135,10 +129,10 @@ const PostItem = ({ post }: Props) => {
 
       <CardContent>
         <div className="mb-4">
-          <CardTitle className="text-3xl font-bold mb-2">
+          <CardTitle className="mb-2 text-3xl font-bold">
             {post.title}
           </CardTitle>
-          <CardDescription className=" uppercase font-semibold text-sm">
+          <CardDescription className=" text-sm font-semibold uppercase">
             {dayjs(post.createdAt).fromNow()}
           </CardDescription>
         </div>
@@ -150,7 +144,7 @@ const PostItem = ({ post }: Props) => {
             </div>
             <Button
               variant="link"
-              className=" capitalize p-0 font-bold text-blue-500"
+              className=" p-0 font-bold capitalize text-blue-500"
               onClick={showMoreHandler}
             >
               {showMore ? "show less" : "show more"}
@@ -168,9 +162,9 @@ const PostItem = ({ post }: Props) => {
                   href={attachment.url}
                   target="_blank"
                   rel="noreferrer"
-                  className="capitalize my-1 mr-3 hover:underline"
+                  className="my-1 mr-3 capitalize hover:underline"
                 >
-                  <PaperclipIcon className="inline mr-1 w-4 h-5" />
+                  <PaperclipIcon className="mr-1 inline h-5 w-4" />
                   {`file ${index + 1}`}
                 </a>
               ))}
@@ -180,11 +174,11 @@ const PostItem = ({ post }: Props) => {
       </CardContent>
 
       <CardFooter className="flex-col">
-        <div className="flex justify-start items-center w-full">
+        <div className="flex w-full items-center justify-start">
           <Button
             variant="link"
             onClick={commentsCounterOnClickHandler}
-            className="font-bold text-green-500 pl-0 hover:no-underline hover:text-green-600"
+            className="pl-0 font-bold text-green-500 hover:text-green-600 hover:no-underline"
           >
             <span className="mr-1">{451} </span> Comments
           </Button>
@@ -193,20 +187,22 @@ const PostItem = ({ post }: Props) => {
             onClick={likesCounterOnClickHandler}
             className={likesVariant({ isLiked })}
           >
-            <Heart className="mr-1 w-4 h-5 fill-inherit" />
+            <Heart className="mr-1 h-5 w-4 fill-inherit" />
             {451} Likes
           </Button>
-          <div className="flex-1 flex justify-end items-center">
+          <div className="flex flex-1 items-center justify-end">
             <Pencil
-              className="mr-4 my-2 cursor-pointer w-4 h-5 hover:fill-blue-500 text-blue-500"
+              className="my-2 mr-4 h-5 w-4 cursor-pointer text-blue-500 hover:fill-blue-500"
               onClick={editPostHandler}
             />
             <Trash
-              className="mr-4 my-2 cursor-pointer w-4 h-5 hover:fill-red-500 text-red-500"
+              className="my-2 mr-4 h-5 w-4 cursor-pointer text-red-500 hover:fill-red-500"
               onClick={deletePostHandler}
             />
           </div>
         </div>
+        <Separator />
+        <PostCommentSection showComments={showComments} />
       </CardFooter>
     </Card>
   );
