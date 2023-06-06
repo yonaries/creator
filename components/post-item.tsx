@@ -202,7 +202,25 @@ const PostItem = ({ post }: Props) => {
           </div>
         </div>
         <Separator />
-        <PostCommentSection showComments={showComments} />
+        <PostCommentSection
+          comments={[
+            {
+              id: "1",
+              avatar: "https://github.com/shadcn.png",
+              name: "Shad Mirza",
+              comment:
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+            },
+            {
+              id: "2",
+              avatar: "https://github.com/shadcn.png",
+              name: "Shad Mirza",
+              comment:
+                "Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum.",
+            },
+          ]}
+          showComments={showComments}
+        />
       </CardFooter>
     </Card>
   );

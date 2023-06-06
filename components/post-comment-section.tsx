@@ -3,9 +3,17 @@ import PostCommentItem from "./post-comment-item";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
 
-type Props = { showComments: boolean };
+type Props = {
+  showComments: boolean;
+  comments: {
+    id: string;
+    avatar: string;
+    name: string;
+    comment: string;
+  }[];
+};
 
-const PostCommentSection = ({ showComments = false }: Props) => {
+const PostCommentSection = ({ showComments = false, comments }: Props) => {
   const showMoreCommentsHandler = () => {
     // TODO: handle show more comments here
   };
@@ -14,12 +22,12 @@ const PostCommentSection = ({ showComments = false }: Props) => {
       <PostCommentForm />
       {showComments && (
         <div className="mt-4">
-          {[1, 2, 3, 4, 5].map((comment) => (
+          {comments.map((comment) => (
             <PostCommentItem
-              avatar="https://github.com/shadcn.png"
-              name="Shad Mirza"
-              comment="Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptatum."
-              key={comment}
+              avatar={comment.avatar}
+              name={comment.name}
+              comment={comment.comment}
+              key={comment.id}
             />
           ))}
 
