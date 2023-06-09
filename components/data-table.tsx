@@ -45,7 +45,8 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div>
+    <div className="max-w-4xl">
+      <DataTablePagination table={table} />
       <div className="rounded-md border">
         <Table>
           <TableHeader>
@@ -96,8 +97,6 @@ export function DataTable<TData, TValue>({
           </TableBody>
         </Table>
       </div>
-
-      <DataTablePagination table={table} />
     </div>
   );
 }
