@@ -12,8 +12,8 @@ type Props = {};
 
 const DateRangeSelector = (props: Props) => {
   return (
-    <Select>
-      <SelectTrigger className="w-[180px]">
+    <Select defaultValue="30">
+      <SelectTrigger className="w-[180px] bg-background ">
         <SelectValue placeholder="Past 30 Days" />
       </SelectTrigger>
       <SelectContent>

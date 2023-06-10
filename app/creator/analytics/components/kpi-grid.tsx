@@ -2,16 +2,12 @@
 
 import { Grid } from "@tremor/react";
 import KPICard from "./kpi-card";
-import data from "./data.json";
-import Kpi from "../types/kpi";
 
-const kpiData: Kpi[] = data as Kpi[];
-
-export default function KPICardGrid() {
+export default function KPICardGrid({ data }: { data: any[] }) {
   return (
     <div>
-      <Grid numItemsLg={3} className="mt-6 grid grid-cols-3 gap-6">
-        {kpiData.map((item) => (
+      <Grid numItemsLg={data.length} className="mt-6 grid grid-cols-3 gap-6">
+        {data.map((item) => (
           <KPICard item={item} />
         ))}
       </Grid>

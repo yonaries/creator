@@ -1,32 +1,23 @@
-import {
-  BadgeDelta,
-  Card,
-  Flex,
-  Metric,
-  ProgressBar,
-  Text,
-} from "@tremor/react";
-import Kpi from "../types/kpi";
+import { BadgeDelta } from "@tremor/react";
+import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 
 type Props = {
-  item: Kpi;
+  item: any;
 };
 
 function KPICard({ item }: Props) {
   return (
-    <Card
-      className="rounded-md border-2 border-muted bg-background"
-      key={item.title}
-    >
-      <Flex alignItems="start">
-        <div className="truncate">
-          <Text>{item.title}</Text>
-          <Metric className="truncate">{item.metric}</Metric>
-        </div>
-        <BadgeDelta className="rounded-full" deltaType={item.deltaType}>
-          {item.delta}
-        </BadgeDelta>
-      </Flex>
+    <Card key={item.title}>
+      <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+        <CardTitle className="text-sm font-medium">{item.title}</CardTitle>
+        <BadgeDelta deltaType={item.deltaType}>{item.delta}</BadgeDelta>
+      </CardHeader>
+      <CardContent>
+        <span className="text-2xl font-bold">{item.metric}</span>
+        <p className="text-xs text-muted-foreground">
+          {item.delta} from last month
+        </p>
+      </CardContent>
     </Card>
   );
 }

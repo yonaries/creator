@@ -1,26 +1,100 @@
-[
-  {
-    "title": "Active Supporters",
-    "metric": "1,234",
-    "progress": 15.9,
-    "target": "$ 80,000",
-    "delta": "13.2%",
-    "deltaType": "moderateIncrease"
+{
+  "supporters": {
+    "overview": [
+      {
+        "title": "Active Supporters",
+        "metric": "1,234",
+        "progress": 15.9,
+        "target": "$ 80,000",
+        "delta": "13.2%",
+        "deltaType": "moderateIncrease"
+      },
+      {
+        "title": "New",
+        "metric": "96",
+        "progress": 53.6,
+        "target": "2,000",
+        "delta": "10.1%",
+        "deltaType": "moderateDecrease"
+      },
+      {
+        "title": "Cancelled",
+        "metric": "20",
+        "progress": 53.6,
+        "target": "2,000",
+        "delta": "10.1%",
+        "deltaType": "moderateDecrease"
+      }
+    ],
+    "chart": [
+      {
+        "date": "2023-05-01",
+        "Active": 256,
+        "New": 11,
+        "Cancelled": 6
+      },
+      {
+        "date": "2023-06-01",
+        "Active": 269,
+        "New": 15,
+        "Cancelled": 3
+      },
+      {
+        "date": "2023-07-01",
+        "Active": 271,
+        "New": 2,
+        "Cancelled": 0
+      },
+      {
+        "date": "2023-08-01",
+        "Active": 256,
+        "New": 0,
+        "Cancelled": 15
+      }
+    ]
   },
-  {
-    "title": "New",
-    "metric": "1,072",
-    "progress": 53.6,
-    "target": "2,000",
-    "delta": "10.1%",
-    "deltaType": "moderateDecrease"
-  },
-  {
-    "title": "Cancelled",
-    "metric": "1,072",
-    "progress": 53.6,
-    "target": "2,000",
-    "delta": "10.1%",
-    "deltaType": "moderateDecrease"
+  "earnings": {
+    "overview": [
+      {
+        "title": "RRM",
+        "metric": "$ 96",
+        "delta": "10.1%",
+        "deltaType": "moderateDecrease"
+      },
+      {
+        "title": "Donations",
+        "metric": "$ 20",
+        "delta": "10.1%",
+        "deltaType": "moderateDecrease"
+      },
+      {
+        "title": "Total Earnings",
+        "metric": "$ 1,234",
+        "delta": "13.2%",
+        "deltaType": "moderateIncrease"
+      }
+    ],
+    "chart": [
+      {
+        "date": "2023-05-01",
+        "rrm": 256,
+        "donations": 11
+      },
+      {
+        "date": "2023-06-01",
+        "rrm": 1500,
+        "donations": 15
+      },
+      {
+        "date": "2023-07-01",
+        "rrm": 271,
+        "donations": 2
+      },
+      {
+        "date": "2023-08-01",
+        "rrm": 256,
+        "donations": 0
+      }
+    ]
   }
-]
+}
