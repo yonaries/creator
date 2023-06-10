@@ -29,6 +29,7 @@ const TabBar = (props: Props) => {
       {props.items.contents.map((content, index) => {
         return (
           <TabsContent
+            className="w-full"
             key={index}
             value={props.items.triggers[index]
               .toLowerCase()
