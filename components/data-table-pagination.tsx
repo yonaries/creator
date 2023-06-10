@@ -22,7 +22,7 @@ interface DataTablePaginationProps<TData> {
 export function DataTablePagination<TData>({
   table,
 }: DataTablePaginationProps<TData>) {
-  return (
+  return table.getPrePaginationRowModel().rows.length > 0 ? (
     <div className="my-2 flex items-center justify-between px-2">
       <div className="flex-1 text-sm text-muted-foreground">
         Showing {table.getPaginationRowModel().rows.length} of{" "}
@@ -93,5 +93,5 @@ export function DataTablePagination<TData>({
         </div>
       </div>
     </div>
-  );
+  ) : null;
 }
