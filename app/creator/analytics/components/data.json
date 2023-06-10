@@ -4,24 +4,18 @@
       {
         "title": "Active Supporters",
         "metric": "1,234",
-        "progress": 15.9,
-        "target": "$ 80,000",
         "delta": "13.2%",
         "deltaType": "moderateIncrease"
       },
       {
         "title": "New",
         "metric": "96",
-        "progress": 53.6,
-        "target": "2,000",
         "delta": "10.1%",
         "deltaType": "moderateDecrease"
       },
       {
         "title": "Cancelled",
         "metric": "20",
-        "progress": 53.6,
-        "target": "2,000",
         "delta": "10.1%",
         "deltaType": "moderateDecrease"
       }
@@ -56,20 +50,20 @@
   "earnings": {
     "overview": [
       {
-        "title": "RRM",
-        "metric": "$ 96",
+        "title": "MRR",
+        "metric": "Br 96",
         "delta": "10.1%",
         "deltaType": "moderateDecrease"
       },
       {
         "title": "Donations",
-        "metric": "$ 20",
+        "metric": "Br 20",
         "delta": "10.1%",
         "deltaType": "moderateDecrease"
       },
       {
         "title": "Total Earnings",
-        "metric": "$ 1,234",
+        "metric": "Br 1,234",
         "delta": "13.2%",
         "deltaType": "moderateIncrease"
       }
@@ -77,23 +71,91 @@
     "chart": [
       {
         "date": "2023-05-01",
-        "rrm": 256,
-        "donations": 11
+        "MRR": 256,
+        "Donations": 11
       },
       {
         "date": "2023-06-01",
-        "rrm": 1500,
-        "donations": 15
+        "MRR": 1500,
+        "Donations": 15
       },
       {
         "date": "2023-07-01",
-        "rrm": 271,
-        "donations": 2
+        "MRR": 271,
+        "Donations": 2
       },
       {
         "date": "2023-08-01",
-        "rrm": 256,
-        "donations": 0
+        "MRR": 256,
+        "Donations": 0
+      },
+      {
+        "date": "2023-09-01",
+        "MRR": 256,
+        "Donations": 11
+      },
+      {
+        "date": "2023-10-01",
+        "MRR": 1500,
+        "Donations": 15
+      },
+      {
+        "date": "2023-11-01",
+        "MRR": 271,
+        "Donations": 2
+      },
+      {
+        "date": "2023-12-01",
+        "MRR": 256,
+        "Donations": 0
+      }
+    ]
+  },
+  "engagements": {
+    "overview": [
+      {
+        "title": "Impressions",
+        "metric": "1,234",
+        "delta": "13.2%",
+        "deltaType": "moderateIncrease"
+      },
+      {
+        "title": "Likes",
+        "metric": "96",
+        "delta": "10.1%",
+        "deltaType": "moderateDecrease"
+      },
+      {
+        "title": "Engagements",
+        "metric": "20",
+        "delta": "10.1%",
+        "deltaType": "moderateDecrease"
+      }
+    ],
+    "chart": [
+      {
+        "date": "2023-05-01",
+        "Impressions": 256,
+        "Likes": 11,
+        "Engagements": 6
+      },
+      {
+        "date": "2023-06-01",
+        "Impressions": 269,
+        "Likes": 15,
+        "Engagements": 3
+      },
+      {
+        "date": "2023-07-01",
+        "Impressions": 271,
+        "Likes": 2,
+        "Engagements": 0
+      },
+      {
+        "date": "2023-08-01",
+        "Impressions": 256,
+        "Likes": 0,
+        "Engagements": 15
       }
     ]
   }

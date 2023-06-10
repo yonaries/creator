@@ -2,8 +2,8 @@ import { Separator } from "@/components/ui/separator";
 import React from "react";
 import TabBar from "@/components/tabbar";
 import SupportersAnalytics from "./components/supporters-analytics";
-import Earnings from "./components/earnings";
-import Engagements from "./components/engagements";
+import EarningsAnalytics from "./components/earnings-analytics";
+import EngagementsAnalytics from "./components/engagements-analytics";
 
 type Props = {};
 
@@ -12,8 +12,8 @@ const Analytics = (props: Props) => {
     triggers: ["Supporters", "Earnings", "Engagements"],
     contents: [
       <SupportersAnalytics key={Date.now()} />,
-      <Earnings key={Date.now()} />,
-      <Engagements key={Date.now()} />,
+      <EarningsAnalytics key={Date.now()} />,
+      <EngagementsAnalytics key={Date.now()} />,
     ],
   };
   return (
