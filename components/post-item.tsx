@@ -88,7 +88,9 @@ const PostItem = ({ post }: Props) => {
         );
       case "audio":
         return (
-          <audio src={file} controls loop={false} className="mb-3 w-full" />
+          <div className="px-5 pt-6">
+            <audio src={file} controls loop={false} className="mb-3 w-full" />
+          </div>
         );
       default:
         break;
