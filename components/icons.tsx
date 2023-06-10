@@ -22,6 +22,7 @@ import {
   LogOut,
   Loader2,
   LucideProps,
+  MessageCircle,
   Moon,
   Mail,
   MoreVertical,
@@ -87,6 +88,7 @@ export const Icons = {
   bell: Bell,
   upDown: ChevronsUpDown,
   logOut: LogOut,
+  message: MessageCircle,
   gitHub: (props: LucideProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path

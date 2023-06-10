@@ -69,7 +69,9 @@ export default function PageLayout({ children }: RootLayoutProps) {
           <aside className="h-screen p-5 lg:w-1/5">
             <SidebarNav items={sidebarNavItems} />
           </aside>
-          <div className="flex-1 bg-muted/60 p-10">{children}</div>
+          <div className="flex-1 bg-muted/60 p-10 dark:bg-muted/90">
+            {children}
+          </div>
         </div>
       </div>
     </>

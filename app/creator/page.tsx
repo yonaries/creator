@@ -1,3 +1,4 @@
+import PostCard from "@/components/post-card";
 import { Separator } from "@/components/ui/separator";
 
 export default function Dashboard() {
@@ -5,6 +6,7 @@ export default function Dashboard() {
     <div>
       <span className="text-3xl font-bold">Dashboard</span>
       <Separator className="my-3" />
+      <PostCard />
     </div>
   );
 }
