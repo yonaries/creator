@@ -176,14 +176,14 @@ const PostItem = ({ post }: Props) => {
       <CardFooter className="flex-col">
         <div className="flex w-full items-center justify-start">
           <Button
-            variant="link"
+            variant="ghost"
             onClick={commentsCounterOnClickHandler}
-            className="pl-0 font-bold text-green-500 hover:text-green-600 hover:no-underline"
+            className="hover:text-none font-bold text-green-500"
           >
             <span className="mr-1">{451} </span> Comments
           </Button>
           <Button
-            variant="link"
+            variant="ghost"
             onClick={likesCounterOnClickHandler}
             className={likesVariant({ isLiked })}
           >
@@ -248,16 +248,13 @@ const thumbnailVariants = cva("w-full h-80", {
   },
 });
 
-const likesVariant = cva(
-  "font-bold hover:no-underline hover:text-red-600 hover:fill-red-600",
-  {
-    variants: {
-      isLiked: {
-        true: "text-red-500 fill-red-500",
-        false: "text-gray-500 fill-gray-500",
-      },
+const likesVariant = cva("font-bold hover:text-none", {
+  variants: {
+    isLiked: {
+      true: "text-red-500 fill-red-500",
+      false: "text-gray-500 fill-gray-500",
     },
-  }
-);
+  },
+});
 
 export default PostItem;
