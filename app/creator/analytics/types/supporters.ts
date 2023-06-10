@@ -1,4 +1,4 @@
-export type SupportersOverview = {
+export type SupportersChart = {
   date: string;
   Active: number;
   New: number;

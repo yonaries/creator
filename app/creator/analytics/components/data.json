@@ -149,12 +149,60 @@
         "date": "2023-07-01",
         "Impressions": 271,
         "Likes": 2,
-        "Engagements": 0
+        "Engagements": 10
       },
       {
         "date": "2023-08-01",
         "Impressions": 256,
-        "Likes": 0,
+        "Likes": 10,
+        "Engagements": 15
+      },
+      {
+        "date": "2023-09-01",
+        "Impressions": 256,
+        "Likes": 11,
+        "Engagements": 6
+      },
+      {
+        "date": "2023-10-01",
+        "Impressions": 269,
+        "Likes": 15,
+        "Engagements": 3
+      },
+      {
+        "date": "2023-11-01",
+        "Impressions": 271,
+        "Likes": 2,
+        "Engagements": 10
+      },
+      {
+        "date": "2023-12-01",
+        "Impressions": 256,
+        "Likes": 10,
+        "Engagements": 15
+      },
+      {
+        "date": "2024-01-01",
+        "Impressions": 256,
+        "Likes": 11,
+        "Engagements": 6
+      },
+      {
+        "date": "2024-02-01",
+        "Impressions": 269,
+        "Likes": 15,
+        "Engagements": 3
+      },
+      {
+        "date": "2024-03-01",
+        "Impressions": 271,
+        "Likes": 2,
+        "Engagements": 10
+      },
+      {
+        "date": "2024-04-01",
+        "Impressions": 256,
+        "Likes": 10,
         "Engagements": 15
       }
     ]

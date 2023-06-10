@@ -1,10 +1,10 @@
 import { DeltaType } from "@tremor/react";
 
-type Chart = {
+type Kpi = {
   title: string;
   metric: string;
   delta: string;
   deltaType: DeltaType;
 };
 
-export default Chart;
+export default Kpi;
