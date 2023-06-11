@@ -74,7 +74,7 @@ export default function Home() {
       Attachment: [],
       status: POST_STATUS.ACTIVE,
       scheduled: new Date().toISOString(),
-      file: "https://file-examples.com/storage/fedb66d828647a2629b3efb/2017/04/file_example_MP4_640_3MG.mp4",
+      file: "https://file-examples.com/storage/fef677cdf46481c8d96f8cd/2017/04/file_example_MP4_480_1_5MG.mp4",
       thumbnail:
         "https://images.pexels.com/photos/16359868/pexels-photo-16359868/free-photo-of-scenic-photo-of-two-men-in-a-cave.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
@@ -118,7 +118,7 @@ export default function Home() {
       Attachment: [],
       status: POST_STATUS.ACTIVE,
       scheduled: new Date().toISOString(),
-      file: "https://file-examples.com/storage/fedb66d828647a2629b3efb/2017/04/file_example_MP4_640_3MG.mp4",
+      file: "https://file-examples.com/storage/fef677cdf46481c8d96f8cd/2017/04/file_example_MP4_480_1_5MG.mp4",
     },
     {
       id: "8",
@@ -130,7 +130,7 @@ export default function Home() {
       Attachment: [],
       status: POST_STATUS.ACTIVE,
       scheduled: new Date().toISOString(),
-      file: "https://file-examples.com/storage/fedb66d828647a2629b3efb/2017/04/file_example_MP4_640_3MG.mp4",
+      file: "https://file-examples.com/storage/fef677cdf46481c8d96f8cd/2017/04/file_example_MP4_480_1_5MG.mp4",
     },
     {
       id: "10",
@@ -144,7 +144,7 @@ export default function Home() {
       Attachment: [],
       status: POST_STATUS.ACTIVE,
       scheduled: new Date().toISOString(),
-      file: "https://file-examples.com/storage/fedb66d828647a2629b3efb/2017/04/file_example_MP4_640_3MG.mp4",
+      file: "https://file-examples.com/storage/fef677cdf46481c8d96f8cd/2017/04/file_example_MP4_480_1_5MG.mp4",
     },
     {
       id: "11",
@@ -159,7 +159,7 @@ export default function Home() {
       Attachment: [],
       status: POST_STATUS.ACTIVE,
       scheduled: new Date().toISOString(),
-      file: "https://file-examples.com/storage/fedb66d828647a2629b3efb/2017/04/file_example_MP4_640_3MG.mp4",
+      file: "https://file-examples.com/storage/fef677cdf46481c8d96f8cd/2017/04/file_example_MP4_480_1_5MG.mp4",
       thumbnail:
         "https://images.pexels.com/photos/16359868/pexels-photo-16359868/free-photo-of-scenic-photo-of-two-men-in-a-cave.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     },
