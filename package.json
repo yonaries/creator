@@ -38,6 +38,7 @@
     "@radix-ui/react-toggle": "^1.0.3",
     "@radix-ui/react-tooltip": "^1.0.6",
     "@tanstack/react-table": "^8.9.1",
+    "@tremor/react": "^3.0.1",
     "@types/node": "20.2.5",
     "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",
@@ -69,6 +70,9 @@
     "prettier-plugin-tailwindcss": "^0.3.0"
   },
   "lint-staged": {
-    "**/*": "prettier --write --ignore-unknown"
+    "**/*": [
+      "prettier --write --ignore-unknown",
+      "next lint ."
+    ]
   }
 }
