@@ -86,80 +86,65 @@ export function DataTable<TData, TValue>({
   });
 
   return (
-    <div>
+    <div className="overflow-hidden rounded-md border border-muted bg-white p-6 shadow-xl dark:bg-transparent">
+      <h1 className="text-xl font-bold dark:text-white">{title}</h1>
+      <TableCaption className="mb-2 mt-1 block text-left">
+        {caption}
+      </TableCaption>
       <DataTableToolBar
         table={table}
         facetFilters={facetFilters}
         filterColumnName={filterColumnName}
       />
-      <div className="rounded-xl bg-white p-4 dark:bg-transparent">
-        <h1 className="text-xl font-bold dark:text-white">{title}</h1>
-        <TableCaption className="mb-4 mt-1 block text-left">
-          {caption}
-        </TableCaption>
-        <div>
-          <Table className="">
-            <TableHeader className="bg-muted dark:bg-muted">
-              {table.getHeaderGroups().map((headerGroup) => (
-                <TableRow key={headerGroup.id}>
-                  {headerGroup.headers.map((header, index, arr) => {
-                    return (
-                      <TableHead
-                        key={header.id}
-                        className={`${index == 0 && "rounded-tl-2xl"} ${
-                          index == arr.length - 1 && "rounded-tr-2xl"
-                        }`}
-                      >
-                        {header.isPlaceholder
-                          ? null
-                          : flexRender(
-                              header.column.columnDef.header,
-                              header.getContext()
-                            )}
-                      </TableHead>
-                    );
-                  })}
+      <div className="rounded-md border border-inherit">
+        <Table className="">
+          <TableHeader>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <TableRow key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
+                  return (
+                    <TableHead key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                    </TableHead>
+                  );
+                })}
+              </TableRow>
+            ))}
+          </TableHeader>
+          <TableBody>
+            {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows.map((row) => (
+                <TableRow
+                  key={row.id}
+                  data-state={row.getIsSelected() && "selected"}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <TableCell key={cell.id}>
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext()
+                      )}
+                    </TableCell>
+                  ))}
                 </TableRow>
-              ))}
-            </TableHeader>
-            <TableBody>
-              {table.getRowModel()?.rows?.length ? (
-                table.getRowModel().rows.map((row, index) => (
-                  <TableRow
-                    key={row.id}
-                    data-state={row.getIsSelected() && "selected"}
-                    className={rowBackgroundVariants({
-                      bg: index % 2 === 1,
-                    })}
-                  >
-                    {row.getVisibleCells().map((cell, index, arr) => (
-                      <TableCell
-                        key={cell.id}
-                        className={`${index == 0 && "rounded-l-2xl"} ${
-                          index == arr.length - 1 && "rounded-r-2xl"
-                        }`}
-                      >
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </TableCell>
-                    ))}
-                  </TableRow>
-                ))
-              ) : (
-                <TableRow>
-                  <TableCell
-                    colSpan={columns.length}
-                    className="h-24 text-center"
-                  >
-                    No results.
-                  </TableCell>
-                </TableRow>
-              )}
-            </TableBody>
-          </Table>
-        </div>
+              ))
+            ) : (
+              <TableRow>
+                <TableCell
+                  colSpan={columns.length}
+                  className="h-24 text-center"
+                >
+                  No results.
+                </TableCell>
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
       </div>
       <DataTablePagination table={table} />
     </div>

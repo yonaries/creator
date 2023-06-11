@@ -23,7 +23,7 @@ export function DataTablePagination<TData>({
   table,
 }: DataTablePaginationProps<TData>) {
   return table.getPrePaginationRowModel().rows.length > 0 ? (
-    <div className="my-2 flex items-center justify-between px-2">
+    <div className="mt-4 flex items-center justify-between px-2">
       <div className="flex-1 text-sm text-muted-foreground">
         Showing {table.getPaginationRowModel().rows.length} of{" "}
         {table.getPrePaginationRowModel().rows.length}
