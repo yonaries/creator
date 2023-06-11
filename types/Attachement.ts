@@ -1,4 +1,4 @@
-export interface AttachementType {
+export interface Attachement {
   id: string;
   url: string;
   createdAt: Date;

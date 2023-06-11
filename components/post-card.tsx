@@ -8,7 +8,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { PostType } from "@/types/PostType";
+import { Post } from "@/types/Post";
 import { Heart, PaperclipIcon, Pencil, PlayCircle, Trash } from "lucide-react";
 import { Button } from "./ui/button";
 import { cva } from "class-variance-authority";
@@ -21,10 +21,10 @@ import { Separator } from "./ui/separator";
 dayjs.extend(relativeTime);
 
 type Props = {
-  post: PostType;
+  post: Post;
 };
 
-const PostItem = ({ post }: Props) => {
+const PostCard = ({ post }: Props) => {
   const [showMore, setShowMore] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -53,7 +53,7 @@ const PostItem = ({ post }: Props) => {
     setShowMore(!showMore);
   };
 
-  const thumbnailOnClickHandler = (post: PostType) => {
+  const thumbnailOnClickHandler = (post: Post) => {
     if (post.type.toLowerCase() === "video" && videoRef.current !== null) {
       if (thumbnailRef.current !== null)
         thumbnailRef.current.style.display = "none";
@@ -259,4 +259,4 @@ const likesVariant = cva("font-bold hover:text-none", {
   },
 });
 
-export default PostItem;
+export default PostCard;

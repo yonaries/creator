@@ -1,8 +1,8 @@
 import { CONTENT } from "@/constants/CONTENT";
 import { POST_STATUS } from "@/constants/POST_STATUS";
-import { AttachementType } from "./AttachementType";
+import { Attachement } from "./Attachement";
 
-export interface PostType {
+export interface Post {
   id: string;
   title: string;
   type: CONTENT;
@@ -16,5 +16,5 @@ export interface PostType {
   visibleTo?: string[];
   pageId: string;
   projectId?: string;
-  Attachment: AttachementType[];
+  Attachment: Attachement[];
 }

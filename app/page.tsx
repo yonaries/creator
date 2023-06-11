@@ -1,12 +1,12 @@
 import Image from "next/image";
 import AuthenticationPage from "@/app/authentication/page";
-import PostItem from "@/components/post-item";
-import { PostType } from "@/types/PostType";
+import PostCard from "@/components/post-card";
+import { Post } from "@/types/Post";
 import { CONTENT } from "@/constants/CONTENT";
 import { POST_STATUS } from "@/constants/POST_STATUS";
 
 export default function Home() {
-  const posts: PostType[] = [
+  const posts: Post[] = [
     {
       id: "1",
       title: "text with attachment",
@@ -196,7 +196,7 @@ export default function Home() {
   return (
     <div>
       {posts.map((item) => (
-        <PostItem key={item.id} post={item} />
+        <PostCard key={item.id} post={item} />
       ))}
     </div>
   );
