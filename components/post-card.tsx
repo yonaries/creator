@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   Card,
   CardContent,
@@ -78,6 +78,7 @@ const PostCard = ({ post }: Props) => {
       case "video":
         return (
           <video
+            preload="metadata"
             src={file}
             ref={videoRef}
             controls
@@ -96,6 +97,23 @@ const PostCard = ({ post }: Props) => {
         break;
     }
   };
+
+  let handlePauseOnOutOfView = (entries: any, observer: any) => {
+    entries.forEach((entry: any) => {
+      if (!entry.isIntersecting) {
+        if (videoRef.current !== null) videoRef?.current.pause();
+      }
+    });
+  };
+
+  useEffect(() => {
+    let options = {
+      rootMargin: "0px",
+      threshold: [0.25, 0.75],
+    };
+    let observer = new IntersectionObserver(handlePauseOnOutOfView, options);
+    if (videoRef.current !== null) observer.observe(videoRef.current);
+  }, []);
 
   return (
     <Card className=" mx-auto my-6 w-11/12 max-w-2xl">
