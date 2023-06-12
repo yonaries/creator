@@ -12,7 +12,7 @@ const TabBar = (props: Props) => {
   return (
     <Tabs
       defaultValue={props.items.triggers[0].toLowerCase().replace(/\s/g, "_")}
-      className="w-[400px]"
+      className="w-full"
     >
       <TabsList>
         {props.items.triggers.map((trigger, index) => {
