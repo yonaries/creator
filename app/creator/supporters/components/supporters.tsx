@@ -8,13 +8,6 @@ type Props = {};
 const Supporters = (props: Props) => {
   return (
     <DataTable
-      facetFilters={[
-        {
-          title: "Status",
-          column: "status",
-          options: statuses,
-        },
-      ]}
       columns={columns}
       data={data}
       filterColumnName="email"
