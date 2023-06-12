@@ -25,8 +25,8 @@ const sidebarNavItems: {
     icon: "home",
   },
   {
-    title: "Supports",
-    href: "/creator/supports",
+    title: "Supporters",
+    href: "/creator/supporters",
     icon: "heart",
   },
   {
