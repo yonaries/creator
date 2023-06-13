@@ -46,13 +46,7 @@ const PostCommentForm = (props: Props) => {
             </FormItem>
           )}
         />
-        <Button
-          type="submit"
-          variant="secondary"
-          className="bg-green-500 text-white hover:bg-green-600"
-        >
-          Comment
-        </Button>
+        <Button type="submit">Comment</Button>
       </form>
     </Form>
   );
