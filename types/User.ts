@@ -1,3 +1,6 @@
+import { Donation } from "@/types/Donation";
+import { Subscription } from "@/types/Subscription";
+
 export interface User {
   id: string;
   displayName: string;
@@ -9,4 +12,7 @@ export interface User {
   firstName?: string;
   lastName?: string;
   profileImage?: string;
+
+  subscription: Subscription[];
+  donation: Donation[];
 }
