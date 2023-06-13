@@ -40,19 +40,9 @@ const sidebarNavItems: {
     icon: "mail",
   },
   {
-    title: "Notifications",
-    href: "/creator/notifications",
-    icon: "bell",
-  },
-  {
     title: "Analytics",
     href: "/creator/analytics",
     icon: "pieChart",
-  },
-  {
-    title: "Payout",
-    href: "/creator/payout",
-    icon: "banknote",
   },
   {
     title: "Settings",
