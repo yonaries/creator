@@ -1,7 +1,6 @@
 import { DataTable } from "@/components/data-table";
 import { data } from "@/assets/data/supporters";
 import { columns } from "./supporters-columns";
-import { statuses } from "../data/supporters/data";
 
 type Props = {};
 
