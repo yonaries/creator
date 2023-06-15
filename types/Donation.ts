@@ -12,6 +12,6 @@ export interface Donation {
 
   itemId: string;
   transactionId: string;
-  donorId: string;
+  donorId?: string;
   pageId: string;
 }
