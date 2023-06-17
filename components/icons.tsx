@@ -13,11 +13,13 @@ import {
   CreditCard,
   File,
   FileText,
+  Facebook,
   Edit,
   HelpCircle,
   Home,
   Heart,
   Image,
+  Instagram,
   Laptop,
   LogOut,
   Loader2,
@@ -37,6 +39,7 @@ import {
   Twitter,
   User,
   X,
+  Youtube,
   type Icon as LucideIcon,
 } from "lucide-react";
 
@@ -93,6 +96,9 @@ export const Icons = {
   palette: Palette,
   share: Share,
   moreHorizontal: MoreHorizontal,
+  instagram: Instagram,
+  facebook: Facebook,
+  youtube: Youtube,
   gitHub: (props: LucideProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path

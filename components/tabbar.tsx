@@ -1,21 +1,43 @@
 import React from "react";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { cva, type VariantProps } from "class-variance-authority";
 
-type Props = {
+import { cn } from "@/lib/utils";
+
+const tabbarVariant = cva("", {
+  variants: {
+    justify: {
+      start: "items-start",
+      center: "items-center",
+      end: "items-end",
+    },
+  },
+  defaultVariants: {
+    justify: "start",
+  },
+});
+
+export interface Props
+  extends React.HTMLAttributes<HTMLDivElement>,
+    VariantProps<typeof tabbarVariant> {
   items: {
     triggers: string[];
     contents: React.ReactNode[];
   };
-};
+}
 
-const TabBar = (props: Props) => {
-  return (
+const TabBar = React.forwardRef<HTMLDivElement, Props>(
+  ({ items, justify, className, ...props }, ref) => (
     <Tabs
-      defaultValue={props.items.triggers[0].toLowerCase().replace(/\s/g, "_")}
-      className="w-[400px]"
+      ref={ref}
+      defaultValue={items.triggers[0].toLowerCase().replace(/\s/g, "_")}
+      className={cn(
+        "flex w-full flex-col",
+        tabbarVariant({ className, justify })
+      )}
     >
-      <TabsList>
-        {props.items.triggers.map((trigger, index) => {
+      <TabsList className={cn("w-fit")}>
+        {items.triggers.map((trigger, index) => {
           return (
             <TabsTrigger
               key={index}
@@ -26,21 +48,21 @@ const TabBar = (props: Props) => {
           );
         })}
       </TabsList>
-      {props.items.contents.map((content, index) => {
+      {items.contents.map((content, index) => {
         return (
           <TabsContent
             className="w-full"
             key={index}
-            value={props.items.triggers[index]
-              .toLowerCase()
-              .replace(/\s/g, "_")}
+            value={items.triggers[index].toLowerCase().replace(/\s/g, "_")}
           >
             {content}
           </TabsContent>
         );
       })}
     </Tabs>
-  );
-};
+  )
+);
+
+TabBar.displayName = "TabBar";
 
 export default TabBar;

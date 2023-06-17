@@ -73,6 +73,7 @@ const PostCard = ({ post }: Props) => {
             width={600}
             height={320}
             className="mb-2 h-80 w-full rounded-t-sm object-cover"
+            onContextMenu={(e) => e.preventDefault()}
           />
         );
       case "video":
@@ -84,13 +85,20 @@ const PostCard = ({ post }: Props) => {
             controls
             loop={false}
             controlsList="nodownload"
+            onContextMenu={(e) => e.preventDefault()}
             className="mb-2 h-80 w-full rounded-t-sm object-cover"
           />
         );
       case "audio":
         return (
-          <div className="px-5 pt-6">
-            <audio src={file} controls loop={false} className="mb-3 w-full" />
+          <div onContextMenu={(e) => e.preventDefault()} className="px-5 pt-6">
+            <audio
+              onContextMenu={(e) => e.preventDefault()}
+              src={file}
+              controls
+              loop={false}
+              className="mb-3 w-full"
+            />
           </div>
         );
       default:
@@ -116,7 +124,7 @@ const PostCard = ({ post }: Props) => {
   }, []);
 
   return (
-    <Card className=" mx-auto my-6 w-11/12 max-w-2xl">
+    <Card className="mx-auto my-6 w-11/12 max-w-2xl">
       <CardHeader className="px-0 pt-0">
         <div className="relative w-full">
           {post.thumbnail &&
