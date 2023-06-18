@@ -26,7 +26,7 @@ module.exports = {
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         primary: {
-          DEFAULT: "hsl(var(--primary))",
+          DEFAULT: "hsla(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
@@ -112,6 +112,16 @@ module.exports = {
             strong: "#f9fafb", // gray-50
             inverted: "#000000", // black
           },
+        },
+        switcher: {
+          1: "hsla(133, 100%, 38%)",
+          2: "hsla(270, 100%, 50%)",
+          3: "hsla(307, 100%, 50%)",
+          4: "hsla(339, 100%, 50%)",
+          6: "hsla(196, 100%, 50%)",
+          5: "hsla(33, 100%, 50%)",
+          7: "hsla(239, 100%, 50%)",
+          8: "hsla(177, 100%, 40%)",
         },
       },
       boxShadow: {
