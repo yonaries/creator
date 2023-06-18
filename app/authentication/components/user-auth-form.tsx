@@ -3,25 +3,22 @@
 import * as React from "react";
 import * as z from "zod";
 
-import { cn } from "@/lib/utils";
+import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Icons } from "@/components/icons";
-import { useRouter } from "next/navigation";
+import { cn } from "@/lib/utils";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { AuthProvider, GoogleAuthProvider } from "firebase/auth";
 
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/react-hook-form/form";
 import { useForm } from "react-hook-form";
-import { SignUpWithEmail } from "../controllers/auth";
+import { SignInWith, SignUpWithEmail } from "../controllers/auth";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -47,11 +44,21 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       password: "",
     },
   });
-  const router = useRouter();
+
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
       setIsLoading(true);
       await SignUpWithEmail(values);
+      setIsLoading(false);
+    } catch (error) {
+      console.log("error", error);
+      setIsLoading(false);
+    }
+  }
+  async function signInWithProvider(provider: AuthProvider) {
+    try {
+      setIsLoading(true);
+      await SignInWith.Provider(provider);
       setIsLoading(false);
     } catch (error) {
       console.log("error", error);
@@ -146,15 +153,12 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
           </span>
         </div>
       </div>
-      <Button variant="outline" type="button" disabled={isLoading}>
-        {isLoading ? (
-          <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
-        ) : (
-          <Icons.twitter className="mr-2 h-4 w-4" />
-        )}{" "}
-        Twitter
-      </Button>
-      <Button variant="outline" type="button" disabled={isLoading}>
+      <Button
+        onClick={() => signInWithProvider(new GoogleAuthProvider())}
+        variant="outline"
+        type="button"
+        disabled={isLoading}
+      >
         {isLoading ? (
           <Icons.spinner className="mr-2 h-4 w-4 animate-spin" />
         ) : (
