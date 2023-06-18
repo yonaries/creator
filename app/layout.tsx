@@ -29,15 +29,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
           )}
         >
           {" "}
-          <AuthProvider>
-            <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <AuthProvider>
               <div className="relative flex min-h-screen flex-col">
                 <div className="flex-1">{children}</div>
               </div>
-            </ThemeProvider>
-            <StyleSwitcher />
-            <Toaster />
-          </AuthProvider>
+            </AuthProvider>
+          </ThemeProvider>
+          <StyleSwitcher />
+          <Toaster />
         </body>
       </html>
     </>

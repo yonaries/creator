@@ -3,6 +3,7 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   createUserWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "@/config/firebase";
 import axios from "axios";
@@ -38,19 +39,29 @@ export class SignInWith {
   }
 }
 
-export async function SignUpWithEmail(
-  email: string,
-  password: string,
-  name: string
-) {
+export async function SignUpWithEmail({
+  displayName,
+  email,
+  password,
+}: {
+  displayName: string;
+  email: string;
+  password: string;
+}) {
   try {
     const userCredential = await createUserWithEmailAndPassword(
       auth,
       email,
       password
     );
+    if (!userCredential.user.displayName) {
+      await updateProfile(userCredential.user, {
+        displayName: displayName,
+      });
+    }
     const token = await userCredential.user.getIdToken();
-    const result = await signUpRequest(token, name);
+    const result = await signUpRequest(token);
+
     return result;
   } catch (error) {
     console.log(error);
@@ -61,10 +72,10 @@ async function signInRequest(token: string, provider: string) {
   try {
     const result = await axios({
       method: "get",
-      url: "http://localhost:5000/api/user/signin",
+      url: "http://localhost:5000/user",
       headers: {
         "Content-Type": "application/json",
-        authorization: token,
+        authorization: `Bearer ${token}`,
         provider: provider,
       },
     });
@@ -74,17 +85,14 @@ async function signInRequest(token: string, provider: string) {
   }
 }
 
-async function signUpRequest(token: string, name: string) {
+async function signUpRequest(token: string) {
   try {
     const result = await axios({
       method: "post",
-      url: "http://localhost:5000/api/user/signup",
+      url: "http://localhost:5000/user",
       headers: {
         "Content-Type": "application/json",
-        authorization: token,
-      },
-      data: {
-        displayName: name,
+        authorization: `Bearer ${token}`,
       },
     });
     return result.data;
