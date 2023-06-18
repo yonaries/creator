@@ -13,10 +13,10 @@ export const metadata: Metadata = {
 export default function AuthenticationPage() {
   return (
     <>
-      <div className="container relative hidden h-screen flex-col items-center justify-center md:flex lg:max-w-none lg:px-0">
+      <div className="container relative flex h-screen flex-col items-center justify-center lg:max-w-none lg:px-0">
         <div className="absolute right-4 top-4 flex items-center md:right-8 md:top-8">
           <Link
-            href="/examples/authentication"
+            href="#"
             className={cn(
               "rounded-md px-3 py-2 hover:bg-accent hover:text-accent-foreground"
             )}

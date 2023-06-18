@@ -50,8 +50,12 @@ export function UserAuthForm({ className, ...props }: UserAuthFormProps) {
       setIsLoading(true);
       await SignUpWithEmail(values);
       setIsLoading(false);
-    } catch (error) {
-      console.log("error", error);
+    } catch (error: any) {
+      if (error.message == "auth/email-already-in-use") {
+        form.setError("email", {
+          message: "This email address is already in use by another account.",
+        });
+      }
       setIsLoading(false);
     }
   }

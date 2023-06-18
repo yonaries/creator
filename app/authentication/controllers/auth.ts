@@ -7,6 +7,7 @@ import {
 } from "firebase/auth";
 import { auth } from "@/config/firebase";
 import axios from "axios";
+import { FirebaseError } from "firebase/app";
 
 export class SignInWith {
   constructor() {}
@@ -15,11 +16,14 @@ export class SignInWith {
     try {
       const userCredential = await signInWithPopup(auth, provider);
       const token = await userCredential.user.getIdToken();
-      const result = await signInRequest(token, provider.providerId);
+      const result = await authRequest(token);
 
       return result;
-    } catch (error: any) {
-      console.log(`Error: ${error}`);
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        console.error(error.code);
+        throw new Error(error.code);
+      }
     }
   }
 
@@ -31,10 +35,13 @@ export class SignInWith {
         password
       );
       const token = await userCredential.user.getIdToken();
-      const result = await signInRequest(token, "cyllo");
+      const result = await authRequest(token);
       return result;
-    } catch (error: any) {
-      console.log(error.code);
+    } catch (error: unknown) {
+      if (error instanceof FirebaseError) {
+        console.error(error.code);
+        throw new Error(error.code);
+      }
     }
   }
 }
@@ -60,32 +67,18 @@ export async function SignUpWithEmail({
       });
     }
     const token = await userCredential.user.getIdToken();
-    const result = await signUpRequest(token);
+    const result = await authRequest(token);
 
     return result;
-  } catch (error) {
-    console.log(error);
+  } catch (error: unknown) {
+    if (error instanceof FirebaseError) {
+      console.error(error.code);
+      throw new Error(error.code);
+    }
   }
 }
 
-async function signInRequest(token: string, provider: string) {
-  try {
-    const result = await axios({
-      method: "get",
-      url: "http://localhost:5000/user",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: `Bearer ${token}`,
-        provider: provider,
-      },
-    });
-    return result.data;
-  } catch (error) {
-    throw new Error(`From server: ${error}`);
-  }
-}
-
-async function signUpRequest(token: string) {
+async function authRequest(token: string) {
   try {
     const result = await axios({
       method: "post",
