@@ -28,21 +28,25 @@ import { Button } from "@/components/ui/button";
 import PostMembershipCheckboxField from "./post-membership-checkbox-field";
 import PostVisiblityRadioGroupField from "./post-visiblity-radio-group-field";
 import { visibilityOptions } from "../data/form-data";
-import { MouseEventHandler } from "react";
-import { submitPost } from "../actions/actions";
+import Image from "next/image";
+import PostFileSelectorField from "./post-file-selector-field";
 
 type Props = {
   className?: string;
   onSubmit: (data: PostFormValues) => void;
+  defaultValues?: Partial<PostFormValues>;
+  formTitle: string;
 };
 
-const PostForm = ({ className, onSubmit }: Props) => {
+const PostForm = ({ className, onSubmit, defaultValues, formTitle }: Props) => {
   // TODO: This can come from your database or API.
-  const defaultValues: Partial<PostFormValues> = {
-    title: "",
-    content: "",
-    visibility: "public",
-    membership: [],
+  const defaultVal: Partial<PostFormValues> = {
+    title: defaultValues?.title ? defaultValues.title : "",
+    content: defaultValues?.content ? defaultValues.content : "",
+    visibility: defaultValues?.visibility ? defaultValues.visibility : "public",
+    membership: defaultValues?.membership ? defaultValues.membership : [],
+    file: defaultValues?.file && defaultValues.file,
+    thumbnail: defaultValues?.thumbnail && defaultValues.thumbnail,
   };
 
   // TODO: FETCH MEMBERSHIPS FROM API AND REMOVE THE STATIC DATA
@@ -62,7 +66,7 @@ const PostForm = ({ className, onSubmit }: Props) => {
   ];
   const form = useForm<PostFormValues>({
     resolver: zodResolver(postFormSchema),
-    defaultValues,
+    defaultValues: defaultVal,
   });
 
   const editor = useEditor({
@@ -90,7 +94,7 @@ const PostForm = ({ className, onSubmit }: Props) => {
       TextAlign.configure({ types: ["heading", "paragraph"] }),
       Placeholder.configure({ placeholder: "Type Here..." }),
     ],
-    content: defaultValues.content,
+    content: defaultVal.content,
   });
 
   return (
@@ -101,16 +105,31 @@ const PostForm = ({ className, onSubmit }: Props) => {
       >
         <div className="flex w-full items-center justify-between py-8">
           <h1 className="scroll-m-20 text-3xl font-semibold tracking-tight">
-            Create Text Post
+            {formTitle}
           </h1>
 
           <div>
-            <Button type="submit">Publish Now</Button>
+            <Button variant="default" type="submit">
+              Publish Now
+            </Button>
           </div>
         </div>
 
         <div className="flex items-start gap-4">
           <div className="max-w-3xl rounded-md border-muted bg-white p-2 dark:bg-muted">
+            <PostFileSelectorField
+              controller={form.control}
+              fieldName="file"
+              fieldLabel="Post File"
+              acceptedFiles={["audio", "image", "video"]}
+            />
+            <PostFileSelectorField
+              controller={form.control}
+              fieldName="thumbnail"
+              fieldLabel="Thumbnail file"
+              acceptedFiles={["image"]}
+            />
+
             <FormField
               control={form.control}
               name="title"
@@ -119,7 +138,7 @@ const PostForm = ({ className, onSubmit }: Props) => {
                   <FormControl>
                     <Input
                       type="text"
-                      placeholder="Post Title"
+                      placeholder="Post Title..."
                       className="my-2 w-full rounded-t-md border-none bg-transparent text-2xl font-bold focus-visible:border-none focus-visible:ring-0 focus-visible:ring-offset-0"
                       {...field}
                     />

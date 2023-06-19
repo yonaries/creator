@@ -4,13 +4,26 @@ import * as z from "zod";
 export const postFormSchema = z
   .object({
     title: z.string().nonempty(),
-    content: z.string().nonempty(),
+    content: z.string().optional(),
     visibility: z
       .enum(["public", "supporters", "membership"])
       .refine((value) => value != null || value != "", {
         message: "You have to select at least one item.",
-      }),
+      })
+      .default("public"),
     membership: z.array(z.string()).optional(),
+    file: z
+      .object({
+        url: z.string(),
+        type: z.string(),
+      })
+      .optional(),
+    thumbnail: z
+      .object({
+        url: z.string(),
+        type: z.enum(["image"]),
+      })
+      .optional(),
   })
   .refine(
     (schema) =>
