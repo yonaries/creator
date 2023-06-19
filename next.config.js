@@ -10,6 +10,8 @@ const nextConfig = {
     FIREBASE_STORAGE_BUCKET: "jegool.appspot.com",
     FIREBASE_MESSAGING_SENDER_ID: "496117211666",
     FIREBASE_APP_ID: "1:496117211666:web:6a58041edcff3e5c1deecb",
+    NEXT_PUBLIC_FRONTEND_URL: "http://localhost:3000",
+    NEXT_PUBLIC_BACKEND_URL: "http://localhost:5000",
   },
   images: {
     remotePatterns: [

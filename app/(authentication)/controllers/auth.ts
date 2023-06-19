@@ -4,6 +4,7 @@ import {
   signInWithPopup,
   createUserWithEmailAndPassword,
   updateProfile,
+  sendEmailVerification,
 } from "firebase/auth";
 import { auth } from "@/config/firebase";
 import axios from "axios";
@@ -68,6 +69,9 @@ export async function SignUpWithEmail({
     }
     const token = await userCredential.user.getIdToken();
     const result = await authRequest(token);
+    if (!userCredential.user.emailVerified) {
+      verifyEmail();
+    }
 
     return result;
   } catch (error: unknown) {
@@ -82,7 +86,7 @@ async function authRequest(token: string) {
   try {
     const result = await axios({
       method: "post",
-      url: "http://localhost:5000/user",
+      url: "http://jegool.up.railway.app/user",
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
@@ -91,5 +95,22 @@ async function authRequest(token: string) {
     return result.data;
   } catch (error) {
     throw new Error(`From server: ${error}`);
+  }
+}
+
+export async function verifyEmail() {
+  try {
+    const user = auth.currentUser;
+    const returnURL = process.env.NEXT_PUBLIC_FRONTEND_URL as string;
+    if (user) {
+      await sendEmailVerification(user, {
+        url: returnURL,
+      });
+    }
+  } catch (error: unknown) {
+    if (error instanceof FirebaseError) {
+      console.error(error.code);
+      throw new Error(error.code);
+    }
   }
 }

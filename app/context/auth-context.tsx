@@ -3,9 +3,9 @@
 import { AuthProvider as Provider, User } from "firebase/auth";
 import React, { useContext, useEffect, useState } from "react";
 import { auth } from "@/config/firebase";
-import { SignInWith } from "@/app/authentication/controllers/auth";
+import { SignInWith } from "@/app/(authentication)/controllers/auth";
 import { useRouter } from "next/navigation";
-import { Icons } from "@/components/icons";
+import navigation from "next/router";
 import Loading from "@/components/loading-page";
 
 const initialState = {
@@ -43,11 +43,16 @@ const AuthProvider = ({ children }: any) => {
       setCurrentUser(user!);
       setIsLoading(false);
 
-      if (!user) {
+      if (!user && navigation.pathname.includes("creator")) {
         router.push("/");
         return;
       }
-      router.push(`/creator?u=${user.email}`);
+      if (!user?.emailVerified) {
+        router.push("/verify-email");
+        return;
+      }
+      if (!user) return;
+      router.push(`/creator?u=${user?.email}`);
     });
     return unsubscribe;
   }, []);

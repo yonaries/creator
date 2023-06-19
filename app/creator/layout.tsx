@@ -54,7 +54,7 @@ const sidebarNavItems: {
 export default function PageLayout({ children }: RootLayoutProps) {
   return (
     <div className="space-y-6">
-      <div className="flex flex-col space-y-8 lg:flex-row lg:space-y-0">
+      <div className="flex space-y-8 lg:space-y-0">
         <aside className="h-screen border-r-[1px] p-5 lg:w-1/5">
           <SidebarNav items={sidebarNavItems} />
         </aside>

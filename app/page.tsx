@@ -1,6 +1,6 @@
-import AuthenticationPage from "./authentication/page";
+import SignUpPage from "./(authentication)/signup/page";
 import Dashboard from "./creator/page";
 
 export default function Home() {
-  return <AuthenticationPage />;
+  return <SignUpPage />;
 }
