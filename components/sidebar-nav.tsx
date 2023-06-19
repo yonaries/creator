@@ -24,7 +24,7 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
   return (
     <nav
       className={cn(
-        "flex space-x-2 h-full flex-col justify-between lg:space-x-0 lg:space-y-1",
+        "flex h-full flex-col justify-between space-x-2 lg:space-x-0 lg:space-y-1",
         className
       )}
       {...props}
@@ -51,7 +51,7 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
               )}
               key={item.href}
             >
-              {item.icon && <Icon className="w-4 h-4" />}
+              {item.icon && <Icon className="h-4 w-4" />}
               <Link key={item.href} href={item.href}>
                 {item.title}
               </Link>
