@@ -86,7 +86,7 @@ async function authRequest(token: string) {
   try {
     const result = await axios({
       method: "post",
-      url: "http://jegool.up.railway.app/user",
+      url: `${process.env.NEXT_PUBLIC_BACKEND_URL}/user`,
       headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
