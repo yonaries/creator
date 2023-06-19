@@ -64,7 +64,7 @@ const VerifyEmailPage = (props: Props) => {
       toast({
         variant: "destructive",
         title: "Uh oh! Something went wrong.",
-        description: "We couldn't send you email.",
+        description: "We couldn't send you verification email.",
         action: (
           <ToastAction onClick={onSubmit} altText="Try again">
             Try again
