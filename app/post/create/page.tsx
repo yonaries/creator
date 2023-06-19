@@ -2,15 +2,16 @@
 import PostForm from "../components/post-form";
 import { toast } from "@/components/ui/use-toast";
 import { PostFormValues } from "../data/form-validator";
-import { submitPost } from "../actions/actions";
+import { createPost } from "../actions/actions";
 import { useTransition } from "react";
 
 export default function CreatePostPage() {
   let [isPending, startTransition] = useTransition();
 
   function onSubmit(data: PostFormValues) {
+    console.log("DATA", data);
     // TODO: submit data to your API
-    startTransition(() => submitPost(data));
+    startTransition(() => createPost(data));
     toast({
       title: "You submitted the following values:",
       description: (
@@ -22,7 +23,11 @@ export default function CreatePostPage() {
   }
   return (
     <div className="mx-auto flex w-11/12 max-w-6xl flex-col items-center justify-between gap-4">
-      <PostForm className="gap-4" onSubmit={onSubmit} />
+      <PostForm
+        className="gap-4"
+        onSubmit={onSubmit}
+        formTitle="Create Text Post"
+      />
     </div>
   );
 }
