@@ -7,6 +7,7 @@ import Underline from "@tiptap/extension-underline";
 import TextAlign from "@tiptap/extension-text-align";
 import Superscript from "@tiptap/extension-superscript";
 import SubScript from "@tiptap/extension-subscript";
+import Placeholder from "@tiptap/extension-placeholder";
 import { Link } from "@mantine/tiptap";
 import CustomRichTextEditor from "@/components/custom-rich-text-editor";
 import { useEditor } from "@tiptap/react";
@@ -87,6 +88,7 @@ const PostForm = ({ className, onSubmit }: Props) => {
       SubScript,
       Highlight,
       TextAlign.configure({ types: ["heading", "paragraph"] }),
+      Placeholder.configure({ placeholder: "Type Here..." }),
     ],
     content: defaultValues.content,
   });
@@ -108,7 +110,7 @@ const PostForm = ({ className, onSubmit }: Props) => {
         </div>
 
         <div className="flex items-start gap-4">
-          <div className="max-w-3xl rounded-md border-muted bg-white p-2">
+          <div className="max-w-3xl rounded-md border-muted bg-white p-2 dark:bg-muted">
             <FormField
               control={form.control}
               name="title"
@@ -148,7 +150,7 @@ const PostForm = ({ className, onSubmit }: Props) => {
             />
           </div>
 
-          <div className="flex flex-col rounded-md bg-white p-8 pt-2">
+          <div className="flex flex-col rounded-md bg-white p-8 pt-2 dark:bg-muted">
             <PostVisiblityRadioGroupField
               items={visibilityOptions}
               controller={form.control}

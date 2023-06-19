@@ -22,7 +22,7 @@ export default function CustomRichTextEditor({
 
   return (
     <RichTextEditor editor={editor} className={cn("", className)}>
-      <RichTextEditor.Toolbar sticky stickyOffset={0}>
+      <RichTextEditor.Toolbar sticky stickyOffset={0} className="dark:bg-muted">
         <RichTextEditor.ControlsGroup className="px-0">
           <RichTextEditor.Bold />
           <RichTextEditor.Italic />
@@ -34,7 +34,7 @@ export default function CustomRichTextEditor({
         </RichTextEditor.ControlsGroup>
 
         <RichTextEditor.ControlsGroup>
-          <RichTextEditor.H1 />
+          <RichTextEditor.H1 color="red" />
           <RichTextEditor.H2 />
           <RichTextEditor.H3 />
           <RichTextEditor.H4 />
@@ -62,7 +62,7 @@ export default function CustomRichTextEditor({
         </RichTextEditor.ControlsGroup>
       </RichTextEditor.Toolbar>
 
-      <RichTextEditor.Content />
+      <RichTextEditor.Content className="dark:text-white" bg={"transparent"} />
     </RichTextEditor>
   );
 }
