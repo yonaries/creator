@@ -188,9 +188,9 @@ export default function AccountSwitcher() {
         <Avatar>
           <AvatarFallback className="animate-pulse"></AvatarFallback>
         </Avatar>
-        <div className="flex flex-col">
-          <div className="h-4 w-20 animate-pulse bg-muted"></div>
-          <div className="h-4 w-10 animate-pulse bg-muted"></div>
+        <div className="flex flex-col space-y-2">
+          <div className="h-4 w-20 animate-pulse rounded-full bg-muted"></div>
+          <div className="h-4 w-10 animate-pulse rounded-full bg-muted"></div>
         </div>
       </div>
     </div>
