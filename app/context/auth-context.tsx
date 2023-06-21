@@ -62,10 +62,8 @@ const AuthProvider = ({ children }: any) => {
       });
 
       if (pathname.includes("donate")) return;
-      if (
-        !user &&
-        (pathname.includes("creator") || pathname.includes("account"))
-      ) {
+
+      if (!user) {
         router.push("/signup");
         return;
       }
