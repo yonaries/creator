@@ -28,6 +28,11 @@ export const posts: Post[] = [
         updatedAt: new Date(),
       },
     ],
+    page: {
+      id: "1",
+      name: "page 1",
+      profileImage: "https://pokeapi.co/api/v2/pokemon/465",
+    },
   },
   {
     id: "2",
@@ -41,6 +46,11 @@ export const posts: Post[] = [
     scheduled: new Date().toISOString(),
     caption:
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam euismod, nunc eget aliquam ultricies, nunc nisl ultricies nunc, nec aliquam nisl nunc sit amet nisl. Quisque euismod, nunc eget aliquam ultricies, nunc nisl ultricies nunc, nec aliquam nisl nunc sit amet nisl. Quisque euismod, nunc eget aliquam ultricies, nunc nisl ultricies nunc, nec aliquam nisl nunc sit amet nisl. Quisque euismod, nunc eget aliquam ultricies, nunc nisl ultricies nunc, nec aliquam nisl nunc sit amet nisl. Quisque euismod, nunc eget aliquam ultricies, nunc nisl ultricies nunc, nec aliquam nisl nunc sit amet nisl.",
+    page: {
+      id: "1",
+      name: "page 1",
+      profileImage: "https://pokeapi.co/api/v2/pokemon/165",
+    },
   },
   {
     id: "3",
@@ -56,6 +66,11 @@ export const posts: Post[] = [
     scheduled: new Date().toISOString(),
     thumbnail:
       "https://images.pexels.com/photos/16359868/pexels-photo-16359868/free-photo-of-scenic-photo-of-two-men-in-a-cave.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    page: {
+      id: "1",
+      name: "page 1",
+      profileImage: "https://pokeapi.co/api/v2/pokemon/65",
+    },
   },
   {
     id: "4",
@@ -73,6 +88,11 @@ export const posts: Post[] = [
     file: "https://file-examples.com/storage/fef677cdf46481c8d96f8cd/2017/04/file_example_MP4_480_1_5MG.mp4",
     thumbnail:
       "https://images.pexels.com/photos/16359868/pexels-photo-16359868/free-photo-of-scenic-photo-of-two-men-in-a-cave.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    page: {
+      id: "1",
+      name: "page 1",
+      profileImage: "https://pokeapi.co/api/v2/pokemon/465",
+    },
   },
   {
     id: "5",
@@ -89,6 +109,11 @@ export const posts: Post[] = [
     thumbnail:
       "https://images.pexels.com/photos/16359868/pexels-photo-16359868/free-photo-of-scenic-photo-of-two-men-in-a-cave.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
     file: "https://images.pexels.com/photos/16539793/pexels-photo-16539793/free-photo-of-sanmigueldeallende.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    page: {
+      id: "1",
+      name: "page 1",
+      profileImage: "https://pokeapi.co/api/v2/pokemon/135",
+    },
   },
   {
     id: "6",
@@ -103,6 +128,11 @@ export const posts: Post[] = [
     status: POST_STATUS.ACTIVE,
     scheduled: new Date().toISOString(),
     file: "https://images.pexels.com/photos/16539793/pexels-photo-16539793/free-photo-of-sanmigueldeallende.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    page: {
+      id: "1",
+      name: "page 1",
+      profileImage: "https://pokeapi.co/api/v2/pokemon/465",
+    },
   },
   {
     id: "7",
@@ -115,6 +145,11 @@ export const posts: Post[] = [
     status: POST_STATUS.ACTIVE,
     scheduled: new Date().toISOString(),
     file: "https://file-examples.com/storage/fef677cdf46481c8d96f8cd/2017/04/file_example_MP4_480_1_5MG.mp4",
+    page: {
+      id: "1",
+      name: "page 1",
+      profileImage: "https://pokeapi.co/api/v2/pokemon/665",
+    },
   },
   {
     id: "8",
@@ -127,6 +162,11 @@ export const posts: Post[] = [
     status: POST_STATUS.ACTIVE,
     scheduled: new Date().toISOString(),
     file: "https://file-examples.com/storage/fef677cdf46481c8d96f8cd/2017/04/file_example_MP4_480_1_5MG.mp4",
+    page: {
+      id: "1",
+      name: "page 1",
+      profileImage: "https://pokeapi.co/api/v2/pokemon/465",
+    },
   },
   {
     id: "10",
@@ -141,6 +181,11 @@ export const posts: Post[] = [
     status: POST_STATUS.ACTIVE,
     scheduled: new Date().toISOString(),
     file: "https://file-examples.com/storage/fef677cdf46481c8d96f8cd/2017/04/file_example_MP4_480_1_5MG.mp4",
+    page: {
+      id: "1",
+      name: "page 1",
+      profileImage: "https://pokeapi.co/api/v2/pokemon/465",
+    },
   },
   {
     id: "11",
@@ -158,6 +203,11 @@ export const posts: Post[] = [
     file: "https://file-examples.com/storage/fef677cdf46481c8d96f8cd/2017/04/file_example_MP4_480_1_5MG.mp4",
     thumbnail:
       "https://images.pexels.com/photos/16359868/pexels-photo-16359868/free-photo-of-scenic-photo-of-two-men-in-a-cave.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    page: {
+      id: "1",
+      name: "page 1",
+      profileImage: "https://pokeapi.co/api/v2/pokemon/465",
+    },
   },
   {
     id: "12",
@@ -175,6 +225,11 @@ export const posts: Post[] = [
     file: "https://file-examples.com/storage/fedb66d828647a2629b3efb/2017/11/file_example_MP3_700KB.mp3",
     thumbnail:
       "https://images.pexels.com/photos/16359868/pexels-photo-16359868/free-photo-of-scenic-photo-of-two-men-in-a-cave.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+    page: {
+      id: "1",
+      name: "page 1",
+      profileImage: "https://pokeapi.co/api/v2/pokemon/465",
+    },
   },
   {
     id: "13",
@@ -187,5 +242,10 @@ export const posts: Post[] = [
     status: POST_STATUS.ACTIVE,
     scheduled: new Date().toISOString(),
     file: "https://file-examples.com/storage/fedb66d828647a2629b3efb/2017/11/file_example_MP3_700KB.mp3",
+    page: {
+      id: "1",
+      name: "page 1",
+      profileImage: "https://pokeapi.co/api/v2/pokemon/465",
+    },
   },
 ];
