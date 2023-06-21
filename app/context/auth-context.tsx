@@ -69,7 +69,7 @@ const AuthProvider = ({ children }: any) => {
         router.push("/signup");
         return;
       }
-      if (!user?.emailVerified) {
+      if (user && !user?.emailVerified) {
         router.push("/verify-email");
         return;
       }
