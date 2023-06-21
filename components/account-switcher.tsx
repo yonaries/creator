@@ -15,19 +15,12 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "next-themes";
 import Link from "next/link";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { auth } from "@/config/firebase";
 import { useAuth } from "@/app/context/auth-context";
 import { usePathname } from "next/navigation";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "./ui/card";
-import { Button } from "./ui/button";
+import CreatePageDialog from "./create-page-dialog";
 
 type Account = {
   name: string;
@@ -43,23 +36,7 @@ export default function AccountSwitcher() {
   return (
     <Suspense fallback={<Loading />}>
       <div className="space-y-3">
-        {!currentUserPage && (
-          <Card className="w-full">
-            <CardHeader>
-              <CardTitle className="text-sm">Become a Creator</CardTitle>
-              <CardDescription>
-                <span className="text-xs">
-                  Setup your profile and reach your true fans.
-                </span>
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <Button size="sm" className="w-full">
-                Start Your Journey
-              </Button>
-            </CardContent>
-          </Card>
-        )}
+        {!currentUserPage && <CreatePageDialog />}
 
         <DropdownMenu>
           {pathname.includes("creator") ? (

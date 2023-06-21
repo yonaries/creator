@@ -19,7 +19,7 @@ const initialState = {
 type Page = {
   [key: string]: any;
 };
-const AuthContext = React.createContext<{
+export const AuthContext = React.createContext<{
   currentUser: User | undefined;
   currentUserPage: Page | undefined;
   idToken: string | undefined;
