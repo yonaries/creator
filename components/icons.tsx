@@ -10,6 +10,7 @@ import {
   ChevronsUpDown,
   ClipboardCheck,
   Copy,
+  Compass,
   CreditCard,
   File,
   FileText,
@@ -99,6 +100,7 @@ export const Icons = {
   instagram: Instagram,
   facebook: Facebook,
   youtube: Youtube,
+  compass: Compass,
   gitHub: (props: LucideProps) => (
     <svg viewBox="0 0 438.549 438.549" {...props}>
       <path

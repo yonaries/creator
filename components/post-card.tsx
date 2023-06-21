@@ -22,9 +22,10 @@ dayjs.extend(relativeTime);
 
 type Props = {
   post: Post;
+  children?: React.ReactNode;
 };
 
-const PostCard = ({ post }: Props) => {
+const PostCard = ({ post, children }: Props) => {
   const [showMore, setShowMore] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -126,6 +127,7 @@ const PostCard = ({ post }: Props) => {
   return (
     <Card className="mx-auto my-6 w-11/12 max-w-2xl">
       <CardHeader className="px-0 pt-0">
+        {children}
         <div className="relative w-full">
           {post.thumbnail &&
             (post.type.toLowerCase() === "video" ||
