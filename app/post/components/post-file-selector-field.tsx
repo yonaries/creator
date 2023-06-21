@@ -35,7 +35,7 @@ export default function PostFileSelectorField({
             alt={file}
             width={600}
             height={320}
-            className="mb-2 h-80 w-full rounded-t-sm object-cover"
+            className="mb-2 h-80 w-full rounded-sm object-cover"
             onContextMenu={(e) => e.preventDefault()}
           />
         );
@@ -49,7 +49,7 @@ export default function PostFileSelectorField({
             loop={false}
             controlsList="nodownload"
             onContextMenu={(e) => e.preventDefault()}
-            className="mb-2 h-80 w-full rounded-t-sm object-cover"
+            className="mb-2 h-80 w-full rounded-sm object-cover"
           />
         );
       case "audio":
@@ -73,7 +73,7 @@ export default function PostFileSelectorField({
       control={controller}
       name={fieldName}
       render={({ field }) => (
-        <FormItem>
+        <FormItem className="my-2">
           {field.value && determineFileType(field.value.url, field.value.type)}
           <FormLabel className="px-2">{fieldLabel}</FormLabel>
           <FormControl>

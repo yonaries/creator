@@ -15,7 +15,7 @@ export const postFormSchema = z
     file: z
       .object({
         url: z.string(),
-        type: z.string(),
+        type: z.enum(["image", "video", "audio"]),
       })
       .optional(),
     thumbnail: z
@@ -24,6 +24,7 @@ export const postFormSchema = z
         type: z.enum(["image"]),
       })
       .optional(),
+    attachments: z.array(z.string()).optional(),
   })
   .refine(
     (schema) =>
