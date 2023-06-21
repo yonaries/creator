@@ -141,6 +141,7 @@ const Supports = (props: Props) => {
   };
   return (
     <div>
+      <span className="text-3xl font-bold">Supports</span>
       <Separator className="my-3" />
       <TabBar items={tabBarItems} />
 

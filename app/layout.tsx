@@ -1,6 +1,7 @@
 import "@/app/globals.css";
 import { Metadata } from "next";
 
+import AuthProvider from "@/app/context/auth-context";
 import { StyleSwitcher } from "@/components/style-switcher";
 import { ThemeProvider } from "@/components/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
@@ -13,7 +14,7 @@ interface RootLayoutProps {
 
 const metadata: Metadata = {
   title: "Jegool",
-  description: ".",
+  description: "Where creativity unleash.",
 };
 
 export default function RootLayout({ children }: RootLayoutProps) {
@@ -27,10 +28,13 @@ export default function RootLayout({ children }: RootLayoutProps) {
             fontSans.variable
           )}
         >
+          {" "}
           <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-            <div className="relative flex min-h-screen flex-col">
-              <div className="flex-1">{children}</div>
-            </div>
+            <AuthProvider>
+              <div className="relative flex min-h-screen flex-col">
+                <div className="flex-1">{children}</div>
+              </div>
+            </AuthProvider>
           </ThemeProvider>
           <StyleSwitcher />
           <Toaster />
