@@ -14,7 +14,7 @@ const initialState = {
   signInWithEmail: () => {},
 };
 
-const AuthContext = React.createContext<{
+export const AuthContext = React.createContext<{
   currentUser: User | undefined;
   signInWithProvider: Function;
   signInWithEmail: Function;
