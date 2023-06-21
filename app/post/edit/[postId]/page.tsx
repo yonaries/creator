@@ -31,6 +31,13 @@ export default function EditPostPage() {
           content: "<p>This is paragraph.</p>",
           visibility: "public",
           membership: [],
+          file: { url: "https://picsum.photos/200/300", type: "image" },
+          thumbnail: { url: "https://picsum.photos/200/300", type: "image" },
+          attachments: [
+            "https://picsum.photos/200/300",
+            "https://picsum.photos/200/300",
+            "https://picsum.photos/200/300",
+          ],
         }}
       />
     </div>

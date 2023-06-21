@@ -30,15 +30,24 @@ import PostVisiblityRadioGroupField from "./post-visiblity-radio-group-field";
 import { visibilityOptions } from "../data/form-data";
 import Image from "next/image";
 import PostFileSelectorField from "./post-file-selector-field";
+import PostAttachmentField from "./post-attachment-field";
+import { Separator } from "@/components/ui/separator";
 
 type Props = {
-  className?: string;
   onSubmit: (data: PostFormValues) => void;
-  defaultValues?: Partial<PostFormValues>;
   formTitle: string;
+  defaultValues?: Partial<PostFormValues>;
+  className?: string;
+  buttonText?: string;
 };
 
-const PostForm = ({ className, onSubmit, defaultValues, formTitle }: Props) => {
+const PostForm = ({
+  className,
+  onSubmit,
+  defaultValues,
+  formTitle,
+  buttonText = "Publish Now",
+}: Props) => {
   // TODO: This can come from your database or API.
   const defaultVal: Partial<PostFormValues> = {
     title: defaultValues?.title ? defaultValues.title : "",
@@ -47,6 +56,7 @@ const PostForm = ({ className, onSubmit, defaultValues, formTitle }: Props) => {
     membership: defaultValues?.membership ? defaultValues.membership : [],
     file: defaultValues?.file && defaultValues.file,
     thumbnail: defaultValues?.thumbnail && defaultValues.thumbnail,
+    attachments: defaultValues?.attachments ? defaultValues.attachments : [],
   };
 
   // TODO: FETCH MEMBERSHIPS FROM API AND REMOVE THE STATIC DATA
@@ -110,7 +120,7 @@ const PostForm = ({ className, onSubmit, defaultValues, formTitle }: Props) => {
 
           <div>
             <Button variant="default" type="submit">
-              Publish Now
+              {buttonText}
             </Button>
           </div>
         </div>
@@ -166,6 +176,12 @@ const PostForm = ({ className, onSubmit, defaultValues, formTitle }: Props) => {
                   <FormMessage />
                 </FormItem>
               )}
+            />
+            <Separator className="dark:bg-white" />
+            <PostAttachmentField
+              controller={form.control}
+              fieldLabel="Attachments"
+              fieldName="attachments"
             />
           </div>
 
