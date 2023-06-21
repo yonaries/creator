@@ -1,5 +1,4 @@
 "use client";
-import { Plus, Podcast } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -15,10 +14,8 @@ import { Input } from "@/components/ui/input";
 import {
   Form,
   FormControl,
-  FormDescription,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "@/components/react-hook-form/form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -27,7 +24,14 @@ import * as z from "zod";
 import { toast } from "./ui/use-toast";
 import axios from "axios";
 import { AuthContext } from "@/app/context/auth-context";
-import { useContext } from "react";
+import { useContext, useState } from "react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "./ui/card";
 
 export const pageFormSchema = z.object({
   name: z.string().min(3, "minimum of 3 characters required"),
@@ -37,6 +41,7 @@ export type PageFormValues = z.infer<typeof pageFormSchema>;
 type Props = {};
 
 export default function CreatePageDialog({}: Props) {
+  const [open, setOpen] = useState(false);
   const { currentUser } = useContext(AuthContext);
   const form = useForm<PageFormValues>({
     resolver: zodResolver(pageFormSchema),
@@ -46,12 +51,8 @@ export default function CreatePageDialog({}: Props) {
   });
 
   async function onSubmitHandler(data: PageFormValues) {
-    // TODO: HANDLE onSubmit here
-    // TODO: ADD OWNER ID TO DATA
     if (currentUser) {
       const token = await currentUser.getIdToken();
-      console.log(data);
-      console.log(token);
       const { data: responseData, status } = await axios.post(
         `${process.env.NEXT_PUBLIC_BACKEND_URL}/page`,
         {
@@ -68,41 +69,32 @@ export default function CreatePageDialog({}: Props) {
       if (status.toString().startsWith("2")) {
         toast({
           title: "Page Created Successfully",
-          description: (
-            <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-              <code className="text-white">
-                {JSON.stringify(data, null, 2)}
-              </code>
-            </pre>
-          ),
         });
       } else if (status.toString().startsWith("4")) {
         toast({
           title: "Page Creation Failed",
-          description: (
-            <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-              <code className="text-white">
-                {JSON.stringify(responseData, null, 2)}
-              </code>
-            </pre>
-          ),
         });
       }
     } else {
       console.log("user not logged in");
     }
+    setOpen(false);
   }
   return (
-    <div className="flex h-[450px] shrink-0 items-center justify-center rounded-md border border-dashed">
-      <div className="mx-auto flex max-w-[420px] flex-col items-center justify-center text-center">
-        <Podcast className="h-10 w-10 text-muted-foreground" />
-        <p className="mb-4 mt-2 text-sm text-muted-foreground">
-          You do not have page under your name yet. Create one below.
-        </p>
-        <Dialog>
-          <DialogTrigger>
-            <Button size="sm" className="relative">
-              Become a creator
+    <Card className="w-full">
+      <CardHeader>
+        <CardTitle className="text-sm">Become a Creator</CardTitle>
+        <CardDescription>
+          <span className="text-xs">
+            Setup your profile and reach your true fans.
+          </span>
+        </CardDescription>
+      </CardHeader>
+      <CardContent>
+        <Dialog open={open} onOpenChange={setOpen}>
+          <DialogTrigger className="w-full">
+            <Button size="sm" className="w-full">
+              Start Your Journey
             </Button>
           </DialogTrigger>
           <DialogContent>
@@ -139,7 +131,7 @@ export default function CreatePageDialog({}: Props) {
             </Form>
           </DialogContent>
         </Dialog>
-      </div>
-    </div>
+      </CardContent>
+    </Card>
   );
 }
