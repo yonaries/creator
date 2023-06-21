@@ -5,11 +5,10 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/components/ui/button";
 import { Icons } from "./icons";
 import AccountSwitcher from "./account-switcher";
 import CreatePostDialog from "./create-post-dialog";
-import CreatePageDialog from "@/components/create-page-dialog";
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
   items: {
@@ -61,7 +60,6 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
         })}
         <CreatePostDialog />
       </div>
-      <CreatePageDialog />
       <AccountSwitcher />
     </nav>
   );

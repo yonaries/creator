@@ -27,6 +27,7 @@ import {
   CardTitle,
 } from "./ui/card";
 import { Button } from "./ui/button";
+import CreatePageDialog from "./create-page-dialog";
 
 export default function AccountSwitcher() {
   const [selectedAccount, setSelectedAccount] = useState<number>(0);
@@ -65,21 +66,7 @@ export default function AccountSwitcher() {
 
   return currentUser ? (
     <div className="space-y-3">
-      <Card className="w-full">
-        <CardHeader>
-          <CardTitle className="text-sm">Become a Creator</CardTitle>
-          <CardDescription>
-            <span className="text-xs">
-              Setup your profile and reach your true fans.
-            </span>
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Button size="sm" className="w-full">
-            Start Your Journey
-          </Button>
-        </CardContent>
-      </Card>
+      <CreatePageDialog />
 
       <DropdownMenu>
         <DropdownMenuTrigger asChild>
