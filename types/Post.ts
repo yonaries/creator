@@ -17,4 +17,9 @@ export interface Post {
   pageId: string;
   projectId?: string;
   Attachment: Attachement[];
+  page: {
+    id: string;
+    name: string;
+    profileImage: string;
+  };
 }

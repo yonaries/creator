@@ -1,21 +1,28 @@
 "use client";
 
 import { AuthProvider as Provider, User } from "firebase/auth";
-import React, { useContext, useEffect, useState } from "react";
+import React, { use, useContext, useEffect, useState } from "react";
 import { auth } from "@/config/firebase";
 import { SignInWith } from "@/app/(authentication)/controllers/auth";
 import { useRouter } from "next/navigation";
-import navigation from "next/router";
 import Loading from "@/components/loading-page";
+import { fetchUserPage } from "./get-user-page.action";
+import { usePathname } from "next/navigation";
 
 const initialState = {
   currentUser: undefined,
+  currentUserPage: undefined,
+  idToken: undefined,
   signInWithProvider: () => {},
   signInWithEmail: () => {},
 };
-
+type Page = {
+  [key: string]: any;
+};
 const AuthContext = React.createContext<{
   currentUser: User | undefined;
+  currentUserPage: Page | undefined;
+  idToken: string | undefined;
   signInWithProvider: Function;
   signInWithEmail: Function;
 }>(initialState);
@@ -26,9 +33,12 @@ export function useAuth() {
 
 const AuthProvider = ({ children }: any) => {
   const [currentUser, setCurrentUser] = useState<User>();
+  const [currentUserPage, setCurrentUserPage] = useState<Page>();
+  const [idToken, setIdToken] = useState<string>();
 
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const router = useRouter();
+  const pathname = usePathname();
 
   async function signInWithProvider(provider: Provider) {
     await SignInWith.Provider(provider);
@@ -43,22 +53,47 @@ const AuthProvider = ({ children }: any) => {
       setCurrentUser(user!);
       setIsLoading(false);
 
-      if (!user && navigation.pathname.includes("creator")) {
-        router.push("/");
+      user?.getIdToken().then((token) => {
+        setIdToken(token);
+      });
+
+      fetchUserPage(currentUser?.uid!).then((page) => {
+        setCurrentUserPage(page.page);
+      });
+
+      if (pathname.includes("donate")) return;
+
+      if (!user) {
+        router.push("/signup");
         return;
       }
-      if (!user?.emailVerified) {
+      if (user && !user?.emailVerified) {
         router.push("/verify-email");
         return;
       }
-      if (!user) return;
-      router.push(`/creator?u=${user?.email}`);
+      if (
+        user?.emailVerified &&
+        !currentUserPage &&
+        pathname.includes("creator")
+      ) {
+        router.push("/account");
+        return;
+      }
+      if (
+        user?.emailVerified &&
+        (pathname.includes("creator") || pathname.includes("account"))
+      )
+        return;
+
+      router.push(`/account`);
     });
     return unsubscribe;
   }, []);
 
   const value = {
     currentUser,
+    currentUserPage,
+    idToken,
     signInWithEmail,
     signInWithProvider,
   };
