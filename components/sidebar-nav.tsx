@@ -58,7 +58,7 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
             </div>
           );
         })}
-        <CreatePostDialog />
+        {pathname.includes("creator") && <CreatePostDialog />}
       </div>
       <AccountSwitcher />
     </nav>
