@@ -10,6 +10,7 @@ import TabBar from "@/components/tabbar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Icons } from "@/components/icons";
 import Link from "next/link";
+import MembershipsTab from "./dashboard/components/memberships-tab";
 
 const metadata: Metadata = {
   title: "My Page - Jegool",
@@ -17,7 +18,7 @@ const metadata: Metadata = {
 };
 
 const tabBarItems = {
-  triggers: ["Overview", "About", "Posts"],
+  triggers: ["Overview", "About", "Posts", "Memberships"],
   contents: [
     <div key={1}>
       {posts.map((item) => (
@@ -45,6 +46,7 @@ const tabBarItems = {
         <PostCard key={item.id} post={item} />
       ))}
     </div>,
+    <MembershipsTab key={4} />,
   ],
 };
 
