@@ -59,7 +59,7 @@ export default async function CreatorProfile({
             <Icons.youtube className="h-5 w-5" />
           </Link>
         </div>
-        <PageContents pageId={page?.id} about={page?.about} />
+        <PageContents page={page} />
       </div>
     </div>
   );
