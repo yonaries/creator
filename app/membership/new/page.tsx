@@ -95,11 +95,11 @@ export default function CreateMembershipPage({}: Props) {
   }
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="mt-20">
         <div className="mx-auto flex min-w-[500px] max-w-2xl flex-col gap-8">
           <Card>
             <CardHeader>
-              <CardTitle>Customize Membership</CardTitle>
+              <CardTitle className="text-2xl">Create Membership</CardTitle>
             </CardHeader>
             <CardContent className="flex flex-col gap-4">
               <FormField
