@@ -57,7 +57,7 @@ const AuthProvider = ({ children }: any) => {
         setIdToken(token);
       });
 
-      fetchUserPage(currentUser?.uid!).then((page) => {
+      fetchUserPage(user?.uid!).then((page) => {
         setCurrentUserPage(page.page);
       });
 

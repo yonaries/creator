@@ -1,13 +1,11 @@
 "use client";
 import { useAuth } from "@/app/context/auth-context";
+import Loading from "@/components/loading-page";
 import PostCard from "@/components/post-card";
 import { Post } from "@/types/Post";
-import { Avatar, AvatarImage, AvatarFallback } from "@radix-ui/react-avatar";
-import React, { use } from "react";
-import { fetchUserFeed } from "../actions/user-feed";
+import { Avatar, AvatarFallback, AvatarImage } from "@radix-ui/react-avatar";
 import useSWR from "swr";
-import { posts } from "@/assets/data/post-card-test";
-import Loading from "@/components/loading-page";
+import { fetchUserFeed } from "../actions/user-feed";
 
 type Props = {};
 
