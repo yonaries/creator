@@ -52,14 +52,14 @@ const PageContents = ({ pageId, about }: Props) => {
   const { data, error, isLoading } = useSWR(pageId, fetchPagePosts);
 
   if (error) {
-    return <div>Something went wrong</div>;
+    return <div>show membership cards here</div>;
   }
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  return <TabBar justify="center" items={tabBarItems(data, about, data)} />;
+  return <TabBar justify="center" items={tabBarItems(data!, about, data)} />;
 };
 
 export default PageContents;

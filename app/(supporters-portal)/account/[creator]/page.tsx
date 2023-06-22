@@ -36,17 +36,15 @@ export default async function CreatorProfile({
 
   return (
     <div>
-      <CoverImage />
+      <CoverImage src={page?.profileImage} />
       <div className="flex w-full flex-col items-center p-10">
         <Avatar className="-mt-20 h-[100px] w-[100px]">
-          <AvatarImage src="https://images.unsplash.com/photo-1517849845537-4d257902454a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8fDA%3D&auto=format&fit=crop&w=500&q=60" />
+          <AvatarImage src={page?.profileImage} />
           <AvatarFallback>{page?.name[0]}</AvatarFallback>
         </Avatar>
-        <div className="flex w-full justify-between">
-          <ColorPicker />
+        <div className="flex w-full justify-end">
           <div className="space-x-3">
             <ShareDialog />
-            <DashboardMoreMenu />
           </div>
         </div>
         <span className="my-5 text-xl font-semibold">{page?.name}</span>
