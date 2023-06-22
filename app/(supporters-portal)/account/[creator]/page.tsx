@@ -25,6 +25,14 @@ export default async function CreatorProfile({
   params: { creator: string };
 }) {
   const page = await getPageData(params.creator);
+  if (!page) {
+    return (
+      <div className="flex h-96 flex-col items-center justify-center">
+        <span className="text-6xl font-semibold">404</span>
+        <span className="text-2xl font-semibold">Page not found</span>
+      </div>
+    );
+  }
 
   return (
     <div>

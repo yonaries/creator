@@ -1,16 +1,10 @@
 "use client";
+import { useAuth } from "@/app/context/auth-context";
 import PostCard from "@/components/post-card";
 import TabBar from "@/components/tabbar";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Post } from "@/types/Post";
 import { Card } from "@tremor/react";
-import useSWR from "swr";
-import { fetchPagePosts } from "../actions/get-page-posts";
-
-type Props = {
-  pageId: string;
-  about: string;
-};
 
 const tabBarItems = (posts: Post[], about: string, projects: any) => ({
   triggers: ["Posts", "About", "Projects"],
@@ -48,18 +42,19 @@ const tabBarItems = (posts: Post[], about: string, projects: any) => ({
   ],
 });
 
-const PageContents = ({ pageId, about }: Props) => {
-  const { data, error, isLoading } = useSWR(pageId, fetchPagePosts);
+const PageContents = () => {
+  const { currentUserPage } = useAuth();
 
-  if (error) {
-    return <div>Something went wrong</div>;
-  }
-
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
-  return <TabBar justify="center" items={tabBarItems(data, about, data)} />;
+  return (
+    <TabBar
+      justify="center"
+      items={tabBarItems(
+        currentUserPage?.Post,
+        currentUserPage?.description,
+        currentUserPage?.Project
+      )}
+    />
+  );
 };
 
 export default PageContents;

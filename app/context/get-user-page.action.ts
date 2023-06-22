@@ -6,7 +6,8 @@ export async function fetchUserPage(uid: string) {
     const response = await axios.get(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/page/owner/${uid}`
     );
-    return response.data.page;
+
+    return response.data;
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error.status);

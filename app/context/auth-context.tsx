@@ -49,7 +49,7 @@ const AuthProvider = ({ children }: any) => {
   }
 
   useEffect(() => {
-    const unsubscribe = auth.onAuthStateChanged((user) => {
+    const unsubscribe = auth.onAuthStateChanged(async (user) => {
       setCurrentUser(user!);
       setIsLoading(false);
 
@@ -57,9 +57,8 @@ const AuthProvider = ({ children }: any) => {
         setIdToken(token);
       });
 
-      fetchUserPage(user?.uid!).then((page) => {
-        setCurrentUserPage(page.page);
-      });
+      const page = await fetchUserPage(user?.uid!);
+      if (page) setCurrentUserPage(page.page);
 
       if (pathname.includes("donate")) return;
 
@@ -71,15 +70,13 @@ const AuthProvider = ({ children }: any) => {
         router.push("/verify-email");
         return;
       }
-      if (
-        user?.emailVerified &&
-        !currentUserPage &&
-        pathname.includes("creator")
-      ) {
+      if (user?.emailVerified && !page && pathname.includes("creator")) {
         router.push("/account");
         return;
       }
       if (
+        user &&
+        page &&
         user?.emailVerified &&
         (pathname.includes("creator") || pathname.includes("account"))
       )
