@@ -8,8 +8,7 @@ import useSWR from "swr";
 import { fetchPagePosts } from "../actions/get-page-posts";
 
 type Props = {
-  pageId: string;
-  about: string;
+  page: any;
 };
 
 const tabBarItems = (posts: Post[], about: string, projects: any) => ({
@@ -48,18 +47,36 @@ const tabBarItems = (posts: Post[], about: string, projects: any) => ({
   ],
 });
 
-const PageContents = ({ pageId, about }: Props) => {
-  const { data, error, isLoading } = useSWR(pageId, fetchPagePosts);
+const PageContents = ({ page }: Props) => {
+  const { data, error, isLoading } = useSWR(page.pageId, fetchPagePosts);
 
   if (error) {
-    return <div>show membership cards here</div>;
+    return (
+      <div className="w-full flex-col space-y-10">
+        <Card className="w-11/12 max-w-2xl">
+          <CardHeader>
+            <CardTitle>About</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-gray-500">
+              {page.about ? page.about : "No description provided"}
+            </p>
+          </CardContent>
+        </Card>
+        <span>
+          Display Page Memberships here. This is a placeholder for now.
+        </span>
+      </div>
+    );
   }
 
   if (isLoading) {
     return <div>Loading...</div>;
   }
 
-  return <TabBar justify="center" items={tabBarItems(data!, about, data)} />;
+  return (
+    <TabBar justify="center" items={tabBarItems(data!, page.about, data)} />
+  );
 };
 
 export default PageContents;
