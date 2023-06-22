@@ -131,7 +131,6 @@ const PostForm = ({
               controller={form.control}
               fieldName="file"
               fieldLabel="Post File"
-              acceptedFiles={["audio", "image", "video"]}
             />
             <PostFileSelectorField
               controller={form.control}

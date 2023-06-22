@@ -14,7 +14,7 @@ import { Input } from "@/components/ui/input";
 type Props = {
   fieldName: keyof PostFormValues;
   controller: Control<PostFormValues, any>;
-  acceptedFiles: ("image" | "video" | "audio")[];
+  acceptedFiles?: ("image" | "video" | "audio")[];
   fieldLabel: string;
 };
 
@@ -26,13 +26,13 @@ export default function PostFileSelectorField({
 }: Props) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const determineFileType = (file: string, type: string) => {
-    switch (type.toLowerCase()) {
+  const determineFileType = (fileData: any) => {
+    switch (fileData.type.toLowerCase()) {
       case "image":
         return (
           <Image
-            src={file}
-            alt={file}
+            src={fileData.url}
+            alt={fileData.url}
             width={600}
             height={320}
             className="mb-2 h-80 w-full rounded-sm object-cover"
@@ -43,7 +43,7 @@ export default function PostFileSelectorField({
         return (
           <video
             preload="metadata"
-            src={file}
+            src={fileData.url}
             ref={videoRef}
             controls
             loop={false}
@@ -57,7 +57,7 @@ export default function PostFileSelectorField({
           <div onContextMenu={(e) => e.preventDefault()} className="px-5 pt-6">
             <audio
               onContextMenu={(e) => e.preventDefault()}
-              src={file}
+              src={fileData.url}
               controls
               loop={false}
               className="mb-3 w-full"
@@ -74,7 +74,7 @@ export default function PostFileSelectorField({
       name={fieldName}
       render={({ field }) => (
         <FormItem className="my-2">
-          {field.value && determineFileType(field.value.url, field.value.type)}
+          {field.value != null && determineFileType(field.value)}
           <FormLabel className="px-2">{fieldLabel}</FormLabel>
           <FormControl>
             <Input
