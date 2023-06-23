@@ -15,7 +15,6 @@ export const getPageData = async (url: string) => {
   } catch (error) {
     console.log("error happened at get page by url action");
     if (error instanceof AxiosError) {
-      console.log(error.status);
       console.log(error.response);
     } else console.log(error);
   }
