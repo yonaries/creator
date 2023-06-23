@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/card";
 import { cn } from "@/lib/utils";
 import { Plus } from "lucide-react";
+import MembershipCard from "./membership-card";
 
 type Props = {
   className?: string;
@@ -19,11 +20,41 @@ export default function MembershipsTab({ className }: Props) {
     <div className="flex justify-center">
       <div
         className={cn(
-          "mx-auto flex w-full min-w-[500px] max-w-3xl flex-col items-start",
+          "mx-auto flex w-full min-w-[500px] max-w-3xl flex-col items-start gap-4",
           className
         )}
       >
-        {/*TODO: This card is shown only if creator has no memberships*/}
+        <MembershipCard
+          membership={{
+            id: "1",
+            title: "Basic",
+            description: "Basic membership",
+            fee: 10,
+            Benefit: [
+              {
+                id: "1",
+                description: "Basic benefit description",
+                title: "Basic benefit",
+                membershipId: "1",
+              },
+              {
+                id: "2",
+                description: "Basic benefit description",
+                title: "Basic benefit",
+                membershipId: "1",
+              },
+            ],
+            createdAt: new Date().toString(),
+            updatedAt: new Date().toString(),
+            pageId: "skdhjs",
+            status: true,
+            Subscription: [],
+            coverImage: "https://picsum.photos/600/300",
+          }}
+        />
+
+        {/*TODO: This ca
+        rd is shown only if creator has no memberships*/}
         <Card className="flex flex-col items-center text-center">
           <CardHeader>
             <CardTitle>Choose what to offer</CardTitle>
