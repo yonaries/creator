@@ -1,14 +1,11 @@
-import ColorPicker from "@/app/creator/dashboard/components/color-picker";
 import CoverImage from "@/app/creator/dashboard/components/cover-image";
-import DashboardMoreMenu from "@/app/creator/dashboard/components/more-menu";
 import ShareDialog from "@/app/creator/dashboard/components/share-dialog";
 import { Icons } from "@/components/icons";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import axios, { AxiosError } from "axios";
 import { Metadata } from "next";
 import Link from "next/link";
-import PageContents from "./page-contents";
 import { getPageData } from "../actions/get-page-by-url";
+import PageContents from "./page-contents";
 
 const metadata: Metadata = {
   title: "My Page - Jegool",

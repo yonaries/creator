@@ -10,7 +10,6 @@ export async function fetchUserPage(uid: string) {
     return response.data;
   } catch (error) {
     if (error instanceof AxiosError) {
-      console.log(error.status);
       console.log(error.response?.data.error.message);
     } else console.log(error);
   }
