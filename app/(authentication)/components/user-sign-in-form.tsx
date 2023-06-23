@@ -19,6 +19,7 @@ import {
 } from "@/components/react-hook-form/form";
 import { useForm } from "react-hook-form";
 import { SignInWith, SignUpWithEmail } from "../controllers/auth";
+import { useToast } from "@/components/ui/use-toast";
 
 interface UserAuthFormProps extends React.HTMLAttributes<HTMLDivElement> {}
 
@@ -33,6 +34,7 @@ const formSchema = z.object({
 
 export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const { toast } = useToast();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -45,13 +47,22 @@ export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
     try {
       setIsLoading(true);
       await SignInWith.Email(values.email, values.password);
-      setIsLoading(false);
+      toast({
+        title: "Authenticated",
+        description: "You have successfully signed in!",
+      });
     } catch (error: any) {
       if (error.message == "auth/user-not-found") {
         form.setError("email", {
           message: "This email address is not associated with an account.",
         });
       }
+      toast({
+        variant: "destructive",
+        title: "Oops!",
+        description: "Something went wrong. couldn't sign you in",
+      });
+    } finally {
       setIsLoading(false);
     }
   }
@@ -59,9 +70,19 @@ export function UserLoginForm({ className, ...props }: UserAuthFormProps) {
     try {
       setIsLoading(true);
       await SignInWith.Provider(provider);
-      setIsLoading(false);
+      toast({
+        title: "Authenticated",
+        description: "You have successfully signed in!",
+      });
     } catch (error) {
       console.log("error", error);
+
+      toast({
+        variant: "destructive",
+        title: "Oops!",
+        description: "Something went wrong. couldn't sign you in",
+      });
+    } finally {
       setIsLoading(false);
     }
   }

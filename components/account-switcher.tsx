@@ -19,7 +19,7 @@ import { Suspense } from "react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { auth } from "@/config/firebase";
 import { useAuth } from "@/app/context/auth-context";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import CreatePageDialog from "./create-page-dialog";
 
 type Account = {
@@ -32,6 +32,7 @@ export default function AccountSwitcher() {
   const { currentUser, currentUserPage } = useAuth();
 
   const pathname = usePathname();
+  const router = useRouter();
 
   return (
     <Suspense fallback={<Loading />}>
@@ -85,7 +86,7 @@ export default function AccountSwitcher() {
           <DropdownMenuContent className="w-full">
             <DropdownMenuLabel>My Accounts</DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuItem>
+            <DropdownMenuItem onClick={() => router.push("/account")}>
               <div className="flex items-center justify-between space-x-14 md:w-full lg:w-[13rem]">
                 <div className="flex items-center space-x-4">
                   <Avatar>
@@ -109,7 +110,7 @@ export default function AccountSwitcher() {
               </div>
             </DropdownMenuItem>
             {currentUserPage && (
-              <DropdownMenuItem>
+              <DropdownMenuItem onClick={() => router.push("/creator")}>
                 <div className="flex items-center justify-between space-x-14 md:w-full lg:w-[13rem]">
                   <div className="flex items-center space-x-4">
                     <Avatar>
