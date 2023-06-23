@@ -1,17 +1,19 @@
 "use server";
+
+import { Post } from "@/types/Post";
 import axios, { AxiosError } from "axios";
 
-export async function fetchUserPage(uid: string) {
+export const fetchPagePosts = async (pageId: string) => {
   try {
     const response = await axios.get(
-      `${process.env.NEXT_PUBLIC_BACKEND_URL}/page/owner/${uid}`
+      `${process.env.NEXT_PUBLIC_BACKEND_URL}/post/sub/${pageId}`
     );
-
-    return response.data;
+    return response.data.posts as Post[];
   } catch (error) {
     if (error instanceof AxiosError) {
       console.log(error.status);
       console.log(error.response?.data.error.message);
     } else console.log(error);
+    throw error;
   }
-}
+};
