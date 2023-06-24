@@ -15,7 +15,6 @@ export async function fetchUserFeed(token: string): Promise<Post[]> {
     return response.data.posts as Post[];
   } catch (error) {
     if (error instanceof AxiosError) {
-      console.log(error.status);
       console.log(error.response?.data.error.message);
     } else console.log(error);
   }
