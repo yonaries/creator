@@ -5,9 +5,10 @@ import TabBar from "@/components/tabbar";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Post } from "@/types/Post";
 import { Card } from "@tremor/react";
+import MembershipTab from "./memberships-tab";
 
 const tabBarItems = (posts: Post[], about: string, projects: any) => ({
-  triggers: ["Posts", "About", "Projects"],
+  triggers: ["Posts", "About", "Projects", "Memberships"],
   contents: [
     <div key={1}>
       {posts && posts.length > 0 ? (
@@ -39,6 +40,7 @@ const tabBarItems = (posts: Post[], about: string, projects: any) => ({
         </div>
       )}
     </div>,
+    <MembershipTab key={4} />,
   ],
 });
 
