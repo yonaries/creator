@@ -37,7 +37,7 @@ const sidebarNavItems: {
   },
   {
     title: "Messages",
-    href: "/creator/messages",
+    href: "/account/messages",
     icon: "mail",
   },
   {
