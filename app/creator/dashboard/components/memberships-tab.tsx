@@ -27,7 +27,7 @@ export default function MembershipsTab({ className }: Props) {
     fetchMemberships(currentUserPage?.id, idToken!)
   );
 
-  if (isLoading) {
+  if (isLoading || !currentUserPage) {
     return <LoadingSpinner />;
   }
 
@@ -42,7 +42,11 @@ export default function MembershipsTab({ className }: Props) {
         {data &&
           data.length > 0 &&
           data.map((membership: Membership) => (
-            <MembershipCard key={membership.id} membership={membership} />
+            <MembershipCard
+              key={membership.id}
+              membership={membership}
+              memberships={data}
+            />
           ))}
 
         {data && data.length > 0 ? (

@@ -11,7 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Membership } from "@/types/Membership";
 import Image from "next/image";
-import { useState, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { Pencil, Trash } from "lucide-react";
@@ -19,12 +19,14 @@ import { useAuth } from "@/app/context/auth-context";
 import { deleteMembership } from "../../memberships/actions/membership";
 import { Icons } from "@/components/icons";
 import Link from "next/link";
+import { mutate } from "swr";
 
 type Props = {
   membership: Membership;
+  memberships: Membership[];
 };
 
-export default function MembershipCard({ membership }: Props) {
+export default function MembershipCard({ membership, memberships }: Props) {
   const [showMore, setShowMore] = useState(false);
   const [isPending, startTransition] = useTransition();
   const { currentUserPage, idToken } = useAuth();
@@ -44,6 +46,11 @@ export default function MembershipCard({ membership }: Props) {
 
   function handleOnDelete() {
     startTransition(() => deleteMembership(membership.id, idToken!));
+    mutate(
+      "memberships",
+      memberships.filter((m) => m.id !== membership.id),
+      false
+    );
   }
   return (
     <Card className="relative w-full">

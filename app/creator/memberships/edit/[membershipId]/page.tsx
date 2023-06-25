@@ -2,12 +2,17 @@
 import { useAuth } from "@/app/context/auth-context";
 import MembershipForm from "../../components/membership-form";
 import { MembershipFormValues } from "../../data/form-validator";
-import { fetchMembership, updateMembership } from "../../actions/membership";
+import {
+  fetchMembership,
+  fetchMemberships,
+  updateMembership,
+} from "../../actions/membership";
 import { useEffect, useState, useTransition } from "react";
 import { uploadFileToStorage } from "@/utils/file-upload";
 import { useRouter, usePathname } from "next/navigation";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 import Loader from "@/components/loading-page";
+import { getFileFromUrl } from "@/utils/get-file-from-url";
 
 type Props = {};
 
@@ -16,27 +21,20 @@ export default function EditMembershipPage({}: Props) {
   const { currentUserPage, idToken } = useAuth();
   const path = usePathname();
   const router = useRouter();
-  const { data, error, isLoading } = useSWR("membership", () =>
-    fetchMembership(path.split("/")[4] as string, idToken!)
+  const { data, error, isLoading } = useSWR(
+    "membership",
+    () => fetchMembership(path.split("/")[4] as string, idToken!),
+    {
+      revalidateOnFocus: true,
+      keepPreviousData: false,
+    }
   );
   const [imageFile, setImageFile] = useState<any | undefined>(undefined);
-
-  async function getFileFromUrl(
-    url: string,
-    name: string,
-    defaultType = "image/jpeg"
-  ) {
-    const response = await fetch(url);
-    const data = await response.blob();
-    return new File([data], name, {
-      type: data.type || defaultType,
-    });
-  }
 
   async function onSubmit(formData: MembershipFormValues) {
     let coverImage = "";
     if (formData.coverImage && data.coverImage) {
-      if (formData.coverImage.name === data.coverImage.name) {
+      if (formData.coverImage.name === data.coverImage) {
         coverImage = data.coverImage;
       } else {
         coverImage = await uploadFileToStorage(formData.coverImage, "benefit");
@@ -51,7 +49,10 @@ export default function EditMembershipPage({}: Props) {
     };
     try {
       startTransition(() => updateMembership(data.id, membership, idToken!));
-      router.push("/creator");
+      router.push("/creator", {
+        forceOptimisticNavigation: true,
+      });
+      mutate("membership", fetchMembership(data.id, idToken!));
     } catch (error) {
       console.log("ERROR ::- ", error);
     }
@@ -64,7 +65,7 @@ export default function EditMembershipPage({}: Props) {
     if (data) callFunc();
   }, [data]);
 
-  if (isLoading || !imageFile) {
+  if (isLoading || !imageFile || !currentUserPage) {
     return <Loader />;
   }
 

@@ -179,6 +179,7 @@ export default function MembershipForm({
                   <FormItem className="relative flex flex-col gap-2">
                     {field.value && (
                       <Button
+                        type="button"
                         onClick={() => {
                           field.onChange(undefined);
                         }}
