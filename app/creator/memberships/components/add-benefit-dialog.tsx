@@ -96,9 +96,11 @@ export default function AddBenefitDialog({ fieldName, controller }: Props) {
                     type="button"
                     onClick={() => {
                       if (form.getValues("title").length >= 3) {
-                        // @ts-ignore
                         field.value
-                          ? field.onChange([...field.value, form.getValues()])
+                          ? field.onChange([
+                              ...(field.value as []),
+                              form.getValues(),
+                            ])
                           : field.onChange([form.getValues()]);
                         setOpen(false);
                         form.reset();
