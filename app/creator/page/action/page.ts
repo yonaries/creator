@@ -1,7 +1,8 @@
 "use server";
+/* eslint-disable */
 import axios from "axios";
 
-export async function fetchPage(id: string, token: string) {
+export async function fetchPageById(id: string, token: string) {
   try {
     const res = await axios.get(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/page/${id}`,

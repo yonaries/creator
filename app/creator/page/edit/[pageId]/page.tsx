@@ -5,7 +5,7 @@ import EditPageForm from "../../component/edit-page-form";
 import useSWR, { mutate } from "swr";
 import { useAuth } from "@/app/context/auth-context";
 import { usePathname, useRouter } from "next/navigation";
-import { fetchPage, updatePage } from "../../action/page";
+import { fetchPageById, updatePage } from "../../action/page";
 import Loading from "@/components/loading-page";
 import { PageFormValues } from "../../data/form-validator";
 import { uploadFileToStorage } from "@/utils/file-upload";
@@ -18,7 +18,7 @@ export default function EditPage() {
   const router = useRouter();
   const { data, error, isLoading } = useSWR(
     "page",
-    () => fetchPage(path.split("/")[4] as string, idToken!),
+    () => fetchPageById(path.split("/")[4] as string, idToken!),
     {
       revalidateOnFocus: true,
       keepPreviousData: false,
@@ -29,8 +29,8 @@ export default function EditPage() {
 
   useEffect(() => {
     if (idToken)
-      mutate("page", fetchPage(path.split("/")[4] as string, idToken!));
-  }, [idToken]);
+      mutate("page", fetchPageById(path.split("/")[4] as string, idToken!));
+  }, [idToken, path]);
 
   async function onSubmit(formData: PageFormValues) {
     let coverImage = "";
@@ -73,8 +73,8 @@ export default function EditPage() {
       router.push("/creator", {
         forceOptimisticNavigation: true,
       });
-      mutate("page", fetchPage(data.id, idToken!));
-      setCurrentUserPage(await fetchPage(data.id, idToken!));
+      mutate("page", fetchPageById(data.id, idToken!));
+      setCurrentUserPage(await fetchPageById(data.id, idToken!));
     } catch (error) {
       console.log("ERROR ::- ", error);
     }
