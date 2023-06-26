@@ -25,7 +25,9 @@ const tabBarItems = (about: string, projects: any) => ({
     </div>,
     <div key={3}>
       {projects && projects.length > 0 ? (
-        projects.map((item: any) => <PostCard key={item.id} post={item} />)
+        projects.map((item: any) => (
+          <PostCard key={item.id} posts={projects} post={item} />
+        ))
       ) : (
         <div className="flex w-full justify-center py-2 text-lg font-bold">
           No projects
