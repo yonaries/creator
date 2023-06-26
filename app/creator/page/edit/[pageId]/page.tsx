@@ -47,7 +47,7 @@ export default function EditPage() {
 
     let profileImage = "";
     if (formData.profileImage) {
-      if (formData.profileImage.name === data.coverImage) {
+      if (formData.profileImage.name === data.profileImage) {
         profileImage = data.profileImage;
       } else {
         profileImage = await uploadFileToStorage(
@@ -93,6 +93,9 @@ export default function EditPage() {
   }, [data]);
 
   if (isLoading || !data) return <Loading />;
+  if (data.coverImage && !coverImage) return <Loading />;
+  if (data.profileImage && !profileImage) return <Loading />;
+
   return (
     <EditPageForm
       onSubmit={onSubmit}
