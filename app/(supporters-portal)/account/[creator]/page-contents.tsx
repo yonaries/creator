@@ -48,7 +48,7 @@ const tabBarItems = (posts: Post[], about: string, projects: any) => ({
 });
 
 const PageContents = ({ page }: Props) => {
-  const { data, error, isLoading } = useSWR(fetchPagePosts(page.pageId));
+  const { data, error, isLoading } = useSWR(page.pageId, fetchPagePosts);
 
   if (error) {
     return (
