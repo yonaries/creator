@@ -15,6 +15,7 @@ const initialState = {
   idToken: undefined,
   signInWithProvider: () => {},
   signInWithEmail: () => {},
+  setCurrentUserPage: () => {},
 };
 type Page = {
   [key: string]: any;
@@ -25,6 +26,7 @@ export const AuthContext = React.createContext<{
   idToken: string | undefined;
   signInWithProvider: Function;
   signInWithEmail: Function;
+  setCurrentUserPage: Function;
 }>(initialState);
 
 export function useAuth() {
@@ -93,6 +95,7 @@ const AuthProvider = ({ children }: any) => {
     idToken,
     signInWithEmail,
     signInWithProvider,
+    setCurrentUserPage,
   };
 
   return (

@@ -1,5 +1,3 @@
-import React from "react";
-
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -8,10 +6,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Icons } from "@/components/icons";
 import { Button } from "@/components/ui/button";
+import { useAuth } from "@/app/context/auth-context";
+import Link from "next/link";
 
 type Props = {};
 
-const DashboardMoreMenu = (props: Props) => {
+const DashboardMoreMenu = ({}: Props) => {
+  const { currentUserPage } = useAuth();
+
+  if (!currentUserPage) return null;
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
@@ -20,8 +23,10 @@ const DashboardMoreMenu = (props: Props) => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent>
-        <DropdownMenuItem className="h-8">Edit Page</DropdownMenuItem>
-        <DropdownMenuItem className="h-8">My Posts</DropdownMenuItem>
+        <Link href={`/creator/page/edit/${currentUserPage.id}`}>
+          <DropdownMenuItem className="h-8">Edit Page</DropdownMenuItem>
+          <DropdownMenuItem className="h-8">My Posts</DropdownMenuItem>
+        </Link>
       </DropdownMenuContent>
     </DropdownMenu>
   );

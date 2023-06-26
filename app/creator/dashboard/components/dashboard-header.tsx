@@ -7,6 +7,7 @@ import DashboardMoreMenu from "./more-menu";
 import ShareDialog from "./share-dialog";
 import { useAuth } from "@/app/context/auth-context";
 import Link from "next/link";
+import { Label } from "@/components/ui/label";
 
 type Props = {};
 
@@ -25,9 +26,13 @@ const DashboardHeader = (props: Props) => {
           <DashboardMoreMenu />
         </div>
       </div>
-      <span className="my-5 text-xl font-semibold">
+      <span className="mt-5 text-xl font-semibold">
         {currentUserPage?.name}
       </span>
+
+      <Label className="mb-5 text-lg text-slate-500">
+        {currentUserPage?.headline}
+      </Label>
       <div className="my-5 flex space-x-4">
         <Link className="h-5 w-5" href="#">
           <Icons.twitter className="h-5 w-5" />

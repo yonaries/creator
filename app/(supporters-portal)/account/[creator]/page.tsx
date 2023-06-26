@@ -6,6 +6,7 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { getPageData } from "../actions/get-page-by-url";
 import PageContents from "./page-contents";
+import { Label } from "@/components/ui/label";
 
 const metadata: Metadata = {
   title: "My Page - Jegool",
@@ -44,7 +45,8 @@ export default async function CreatorProfile({
             <ShareDialog />
           </div>
         </div>
-        <span className="my-5 text-xl font-semibold">{page?.name}</span>
+        <span className="mt-5 text-xl font-semibold">{page?.name}</span>
+        <Label className="mb-5 text-lg text-slate-500">{page?.headline}</Label>
         <div className="my-5 flex space-x-4">
           <Link href="#">
             <Icons.twitter className="h-5 w-5" />
