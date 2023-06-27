@@ -23,7 +23,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/react-hook-form/form";
+} from "@/components/ui/form";
 import { Button } from "@/components/ui/button";
 import PostMembershipCheckboxField from "./post-membership-checkbox-field";
 import PostVisiblityRadioGroupField from "./post-visiblity-radio-group-field";

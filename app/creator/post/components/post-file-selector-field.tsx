@@ -5,7 +5,7 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/react-hook-form/form";
+} from "@/components/ui/form";
 import { Control } from "react-hook-form";
 import { PostFormValues } from "../data/form-validator";
 import { useRef } from "react";
