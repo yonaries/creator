@@ -47,7 +47,7 @@ const PageContents = ({ page }: Props) => {
 
   if (error || !data) {
     return (
-      <div className="w-full flex-col space-y-10">
+      <div className="w-full flex-col items-center justify-center space-y-10">
         <Card className="w-11/12 max-w-2xl">
           <CardHeader>
             <CardTitle>About</CardTitle>
@@ -59,9 +59,10 @@ const PageContents = ({ page }: Props) => {
           </CardContent>
         </Card>
         <div className="flex items-center justify-center space-x-10">
-          {page.membership.map((item: Membership, index: number) => (
-            <MembershipCardSmall key={index} membership={item} />
-          ))}
+          {page.Membership &&
+            page.Membership.map((item: Membership, index: number) => (
+              <MembershipCardSmall key={index} membership={item} />
+            ))}
         </div>
       </div>
     );

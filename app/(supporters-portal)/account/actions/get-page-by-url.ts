@@ -11,6 +11,7 @@ export const getPageData = async (url: string) => {
     const page = await axios.get(
       `${process.env.NEXT_PUBLIC_BACKEND_URL}/page/url/${url}`
     );
+    console.log(page.data.page);
     return page.data.page as Page;
   } catch (error) {
     console.log("error happened at get page by url action");
