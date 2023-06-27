@@ -16,7 +16,9 @@ const tabBarItems = (posts: Post[], about: string, projects: any) => ({
   contents: [
     <div key={1}>
       {posts && posts.length > 0 ? (
-        posts.map((item) => <PostCard key={item.id} post={item} />)
+        posts.map((item) => (
+          <PostCard key={item.id} post={item} posts={posts} />
+        ))
       ) : (
         <div className="flex w-full justify-center py-2 text-lg font-bold">
           No posts
@@ -37,7 +39,9 @@ const tabBarItems = (posts: Post[], about: string, projects: any) => ({
     </div>,
     <div key={3}>
       {projects && projects.length > 0 ? (
-        projects.map((item: any) => <PostCard key={item.id} post={item} />)
+        projects.map((item: any) => (
+          <PostCard key={item.id} post={item} posts={projects} />
+        ))
       ) : (
         <div className="flex w-full justify-center py-2 text-lg font-bold">
           No projects

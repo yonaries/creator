@@ -3,12 +3,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { Icons } from "./icons";
 import AccountSwitcher from "./account-switcher";
-import CreatePostDialog from "./create-post-dialog";
+import { Edit } from "lucide-react";
 
 interface SidebarNavProps extends React.HTMLAttributes<HTMLElement> {
   items: {
@@ -58,7 +57,14 @@ export function SidebarNav({ className, items, ...props }: SidebarNavProps) {
             </div>
           );
         })}
-        {pathname.includes("creator") && <CreatePostDialog />}
+        {pathname.includes("creator") && (
+          <Button variant="outline" className="space-x-4">
+            <Link href="/creator/post/new" className="flex items-center gap-2">
+              <Edit className="h-4 w-4" />
+              Create Post
+            </Link>
+          </Button>
+        )}
       </div>
       <AccountSwitcher />
     </nav>
