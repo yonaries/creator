@@ -14,7 +14,7 @@ type Props = {
 };
 
 const tabBarItems = (posts: Post[], about: string, projects: any) => ({
-  triggers: ["Posts", "About", "Projects"],
+  triggers: ["Posts", "About"],
   contents: [
     <div key={1}>
       {posts && posts.length > 0 ? (
@@ -39,24 +39,13 @@ const tabBarItems = (posts: Post[], about: string, projects: any) => ({
         </CardContent>
       </Card>
     </div>,
-    <div key={3}>
-      {projects && projects.length > 0 ? (
-        projects.map((item: any) => (
-          <PostCard key={item.id} post={item} posts={projects} />
-        ))
-      ) : (
-        <div className="flex w-full justify-center py-2 text-lg font-bold">
-          No projects
-        </div>
-      )}
-    </div>,
   ],
 });
 
 const PageContents = ({ page }: Props) => {
   const { data, error, isLoading } = useSWR(page.pageId, fetchPagePosts);
 
-  if (error) {
+  if (error || !data) {
     return (
       <div className="w-full flex-col space-y-10">
         <Card className="w-11/12 max-w-2xl">
