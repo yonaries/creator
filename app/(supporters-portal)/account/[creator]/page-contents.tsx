@@ -6,6 +6,8 @@ import { Post } from "@/types/Post";
 import { Card } from "@tremor/react";
 import useSWR from "swr";
 import { fetchPagePosts } from "../actions/get-page-posts";
+import MembershipCardSmall from "./membership-card";
+import { Membership } from "@/types/Membership";
 
 type Props = {
   page: any;
@@ -67,9 +69,11 @@ const PageContents = ({ page }: Props) => {
             </p>
           </CardContent>
         </Card>
-        <span>
-          Display Page Memberships here. This is a placeholder for now.
-        </span>
+        <div className="flex items-center justify-center space-x-10">
+          {page.membership.map((item: Membership, index: number) => (
+            <MembershipCardSmall key={index} membership={item} />
+          ))}
+        </div>
       </div>
     );
   }
