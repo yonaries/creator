@@ -7,19 +7,27 @@ import {
   CardDescription,
   CardTitle,
 } from "@/components/ui/card";
+import Highlight from "@tiptap/extension-highlight";
+import StarterKit from "@tiptap/starter-kit";
+import Underline from "@tiptap/extension-underline";
+import TextAlign from "@tiptap/extension-text-align";
+import Superscript from "@tiptap/extension-superscript";
+import SubScript from "@tiptap/extension-subscript";
+import Placeholder from "@tiptap/extension-placeholder";
+import * as TipTapLink from "@mantine/tiptap";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import { Membership } from "@/types/Membership";
 import Image from "next/image";
 import { useEffect, useState, useTransition } from "react";
 import { EditorContent, useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
 import { Pencil, Trash } from "lucide-react";
 import { useAuth } from "@/app/context/auth-context";
 import { deleteMembership } from "../../memberships/actions/membership";
 import { Icons } from "@/components/icons";
 import Link from "next/link";
 import { mutate } from "swr";
+import { RichTextEditor } from "@mantine/tiptap";
 
 type Props = {
   membership: Membership;
@@ -40,7 +48,29 @@ export default function MembershipCard({ membership, memberships }: Props) {
             class: "bg-muted",
           },
         },
+        heading: {
+          levels: [1, 2, 3, 4],
+        },
+        orderedList: {
+          HTMLAttributes: {
+            class: "list-decimal ",
+          },
+        },
+        bulletList: {
+          HTMLAttributes: {
+            class: "list-disc",
+          },
+        },
       }),
+      Underline,
+      TipTapLink.Link.configure({
+        HTMLAttributes: { class: "text-blue-500 underline" },
+      }),
+      Superscript,
+      SubScript,
+      Highlight,
+      TextAlign.configure({ types: ["heading", "paragraph"] }),
+      Placeholder.configure({ placeholder: "Type Here..." }),
     ],
   });
 
@@ -89,12 +119,20 @@ export default function MembershipCard({ membership, memberships }: Props) {
           )}
 
           <div className="flex-1 p-4">
-            <CardTitle className="text-xl">{membership.title}</CardTitle>
+            <CardTitle className="text-xl capitalize">
+              {membership.title}
+            </CardTitle>
             <CardTitle className="text-base">
               {membership.fee} Birr / month
             </CardTitle>
 
-            <EditorContent editor={editor} />
+            <RichTextEditor editor={editor} className="border-none p-0" p={"0"}>
+              <RichTextEditor.Content
+                m={"0"}
+                className="m-0 p-0 dark:text-white"
+                bg={"transparent"}
+              />{" "}
+            </RichTextEditor>
           </div>
         </div>
         <div className="flex w-full flex-col items-start px-4">

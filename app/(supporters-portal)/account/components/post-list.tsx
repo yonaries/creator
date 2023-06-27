@@ -34,7 +34,7 @@ const PostsList = (props: Props) => {
   return (
     <div className="flex flex-col items-center">
       {posts.map((item) => (
-        <PostCard key={item.id} post={item}>
+        <PostCard key={item.id} post={item} posts={posts}>
           <div className="flex items-center space-x-3 px-4 py-2">
             <Avatar className="w-10">
               <AvatarImage src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/465.png" />

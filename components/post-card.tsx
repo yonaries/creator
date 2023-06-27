@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
 import {
   Card,
   CardContent,
@@ -17,27 +17,100 @@ import relativeTime from "dayjs/plugin/relativeTime";
 import Image from "next/image";
 import PostCommentSection from "./post-comment-section";
 import { Separator } from "./ui/separator";
+import { useAuth } from "@/app/context/auth-context";
+import Link from "next/link";
+import { EditorContent, useEditor } from "@tiptap/react";
+import {
+  deletePost,
+  fetchPostAttachments,
+} from "@/app/creator/post/actions/post";
+import useSWR, { mutate } from "swr";
+import Highlight from "@tiptap/extension-highlight";
+import StarterKit from "@tiptap/starter-kit";
+import Underline from "@tiptap/extension-underline";
+import TextAlign from "@tiptap/extension-text-align";
+import Superscript from "@tiptap/extension-superscript";
+import SubScript from "@tiptap/extension-subscript";
+import Placeholder from "@tiptap/extension-placeholder";
+import * as TipTapLink from "@mantine/tiptap";
+import { RichTextEditor } from "@mantine/tiptap";
+import { Attachement } from "@/types/Attachement";
 
 dayjs.extend(relativeTime);
 
 type Props = {
   post: Post;
+  posts: Post[];
   children?: React.ReactNode;
 };
 
-const PostCard = ({ post, children }: Props) => {
+const PostCard = ({ post, children, posts }: Props) => {
   const [showMore, setShowMore] = useState(false);
   const [showComments, setShowComments] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
   const thumbnailRef = useRef<HTMLImageElement>(null);
   const [isLiked, setIsLiked] = useState(false);
+  const { currentUserPage, idToken } = useAuth();
+  const [isPending, startTransition] = useTransition();
+
+  const { isLoading, data } = useSWR(
+    `attachment${post.id}`,
+    () => fetchPostAttachments(post.id, idToken!),
+    {
+      revalidateOnFocus: true,
+      keepPreviousData: false,
+    }
+  );
+
+  useEffect(() => {
+    mutate(`attachment${post.id}`, () =>
+      fetchPostAttachments(post.id, idToken!)
+    );
+  }, [post, idToken]);
+
+  const editor = useEditor({
+    editable: false,
+    content: post.caption ? post.caption : "",
+    extensions: [
+      StarterKit.configure({
+        code: {
+          HTMLAttributes: {
+            class: "bg-muted",
+          },
+        },
+        heading: {
+          levels: [1, 2, 3, 4],
+        },
+        orderedList: {
+          HTMLAttributes: {
+            class: "list-decimal ",
+          },
+        },
+        bulletList: {
+          HTMLAttributes: {
+            class: "list-disc",
+          },
+        },
+      }),
+      Underline,
+      TipTapLink.Link.configure({
+        HTMLAttributes: { class: "text-blue-500 underline" },
+      }),
+      Superscript,
+      SubScript,
+      Highlight,
+      TextAlign.configure({ types: ["heading", "paragraph"] }),
+      Placeholder.configure({ placeholder: "Type Here..." }),
+    ],
+  });
 
   const deletePostHandler = () => {
-    // TODO: handle delete post
-  };
-
-  const editPostHandler = () => {
-    // TODO: handle edit post
+    startTransition(() => deletePost(post.id, idToken!));
+    mutate(
+      "posts",
+      posts.filter((p) => p.id !== post.id),
+      false
+    );
   };
 
   const commentsCounterOnClickHandler = () => {
@@ -133,7 +206,10 @@ const PostCard = ({ post, children }: Props) => {
             (post.type.toLowerCase() === "video" ||
               post.type.toLowerCase() === "text") && (
               <div
-                className={thumbnailVariants({ type: post.type })}
+                className={thumbnailVariants({
+                  type: post.type,
+                  className: "absolute left-0 top-0 z-10",
+                })}
                 ref={thumbnailRef}
                 onClick={() => thumbnailOnClickHandler(post)}
               >
@@ -142,7 +218,7 @@ const PostCard = ({ post, children }: Props) => {
                   alt={post.title}
                   width={600}
                   height={320}
-                  className="absolute left-0 top-0 z-10 mb-2 h-80 w-full cursor-pointer rounded-t-sm object-cover "
+                  className=" mb-2 h-80 w-full cursor-pointer rounded-t-sm object-cover "
                 />
                 {post.thumbnail && post.type.toLowerCase() === "video" && (
                   <PlayCircle
@@ -159,7 +235,7 @@ const PostCard = ({ post, children }: Props) => {
 
       <CardContent>
         <div className="mb-4">
-          <CardTitle className="mb-2 text-3xl font-bold">
+          <CardTitle className="mb-2 text-3xl font-bold capitalize">
             {post.title}
           </CardTitle>
           <CardDescription className=" text-sm font-semibold uppercase">
@@ -169,24 +245,31 @@ const PostCard = ({ post, children }: Props) => {
         {post.caption && (
           <>
             <div className="relative">
-              {showMore ? post.caption : post.caption.slice(0, 400)}
-              <div className={captionVariants({ showMore })}></div>
+              {/*showMore ? post.caption : post.caption.slice(0, 400)*/}
+              {/*<EditorContent editor={editor} />*/}
+              <RichTextEditor editor={editor}>
+                <RichTextEditor.Content
+                  className="dark:text-white"
+                  bg={"transparent"}
+                />{" "}
+              </RichTextEditor>
+              {/*<div className={captionVariants({ showMore })}></div>*/}
             </div>
-            <Button
-              variant="link"
-              className=" p-0 font-bold capitalize text-blue-500"
-              onClick={showMoreHandler}
-            >
-              {showMore ? "show less" : "show more"}
-            </Button>
+            {/*<Button
+                          variant="link"
+                          className=" p-0 font-bold capitalize text-blue-500"
+                          onClick={showMoreHandler}
+                        >
+                          {showMore ? "show less" : "show more"}
+                        </Button>*/}
           </>
         )}
 
-        {post.Attachment.length > 0 && (
+        {data && data?.length > 0 && (
           <div className="flex flex-col">
             <p className="font-semibold">Attachments</p>
             <div className="flex">
-              {post.Attachment.map((attachment, index) => (
+              {data?.map((attachment: Attachement, index: number) => (
                 <a
                   key={attachment.id}
                   href={attachment.url}
@@ -205,6 +288,7 @@ const PostCard = ({ post, children }: Props) => {
 
       <CardFooter className="flex-col">
         <div className="flex w-full items-center justify-start">
+          {/*
           <Button
             variant="ghost"
             onClick={commentsCounterOnClickHandler}
@@ -220,17 +304,22 @@ const PostCard = ({ post, children }: Props) => {
             <Heart className="mr-1 h-5 w-4 fill-inherit" />
             {451} Likes
           </Button>
-          <div className="flex flex-1 items-center justify-end">
-            <Pencil
-              className="my-2 mr-4 h-5 w-4 cursor-pointer text-blue-500 hover:fill-blue-500"
-              onClick={editPostHandler}
-            />
-            <Trash
-              className="my-2 mr-4 h-5 w-4 cursor-pointer text-red-500 hover:fill-red-500"
-              onClick={deletePostHandler}
-            />
-          </div>
+          */}
+          {currentUserPage &&
+            post.pageId &&
+            currentUserPage.id === post.pageId && (
+              <div className="flex flex-1 items-center justify-end">
+                <Link href={`/creator/post/edit/${post.id}`}>
+                  <Pencil className="my-2 mr-4 h-5 w-4 cursor-pointer text-blue-500 hover:fill-blue-500" />
+                </Link>
+                <Trash
+                  className="my-2 mr-4 h-5 w-4 cursor-pointer text-red-500 hover:fill-red-500"
+                  onClick={deletePostHandler}
+                />
+              </div>
+            )}
         </div>
+        {/*
         <Separator />
         <PostCommentSection
           comments={[
@@ -251,6 +340,7 @@ const PostCard = ({ post, children }: Props) => {
           ]}
           showComments={showComments}
         />
+        */}
       </CardFooter>
     </Card>
   );
@@ -288,3 +378,6 @@ const likesVariant = cva("font-bold hover:text-none", {
 });
 
 export default PostCard;
+function fetchAttachment(id: string, arg1: string) {
+  throw new Error("Function not implemented.");
+}
