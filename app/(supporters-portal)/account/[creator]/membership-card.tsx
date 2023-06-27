@@ -19,7 +19,7 @@ const MembershipCard = ({ membership }: Props) => {
     <Card>
       <CardHeader>
         <AspectRatio ratio={16 / 4}>
-          <Image src={membership.image} />
+          <Image alt="membership image" src={membership.image} />
         </AspectRatio>
       </CardHeader>
       <CardContent></CardContent>
