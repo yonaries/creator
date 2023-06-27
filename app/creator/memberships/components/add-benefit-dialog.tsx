@@ -25,7 +25,7 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/react-hook-form/form";
+} from "@/components/ui/form";
 import { useState } from "react";
 
 type Props = {

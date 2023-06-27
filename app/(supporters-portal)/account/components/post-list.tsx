@@ -11,15 +11,13 @@ type Props = {};
 
 const PostsList = (props: Props) => {
   const { idToken } = useAuth();
-  const { data, error, isLoading } = useSWR(fetchUserFeed(idToken!));
-  const posts = data as Post[];
-  console.log("posts=>", posts);
+  const { data, error, isLoading } = useSWR(idToken!, fetchUserFeed);
 
   if (isLoading) {
     return <Loading />;
   }
 
-  if (error || !posts || posts.length === 0) {
+  if (error || !data || data.length === 0) {
     return (
       <div className="flex h-96 items-center justify-center">
         <span className="text-xl font-bold">
@@ -33,8 +31,8 @@ const PostsList = (props: Props) => {
 
   return (
     <div className="flex flex-col items-center">
-      {posts.map((item) => (
-        <PostCard key={item.id} post={item} posts={posts}>
+      {data.map((item) => (
+        <PostCard posts={data} key={item.id} post={item}>
           <div className="flex items-center space-x-3 px-4 py-2">
             <Avatar className="w-10">
               <AvatarImage src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/465.png" />

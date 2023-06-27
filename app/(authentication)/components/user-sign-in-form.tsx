@@ -16,7 +16,7 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/react-hook-form/form";
+} from "@/components/ui/form";
 import { useForm } from "react-hook-form";
 import { SignInWith, SignUpWithEmail } from "../controllers/auth";
 import { useToast } from "@/components/ui/use-toast";

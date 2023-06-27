@@ -6,13 +6,15 @@ import { Post } from "@/types/Post";
 import { Card } from "@tremor/react";
 import useSWR from "swr";
 import { fetchPagePosts } from "../actions/get-page-posts";
+import MembershipCardSmall from "./membership-card";
+import { Membership } from "@/types/Membership";
 
 type Props = {
   page: any;
 };
 
 const tabBarItems = (posts: Post[], about: string, projects: any) => ({
-  triggers: ["Posts", "About", "Projects"],
+  triggers: ["Posts", "About"],
   contents: [
     <div key={1}>
       {posts && posts.length > 0 ? (
@@ -37,26 +39,15 @@ const tabBarItems = (posts: Post[], about: string, projects: any) => ({
         </CardContent>
       </Card>
     </div>,
-    <div key={3}>
-      {projects && projects.length > 0 ? (
-        projects.map((item: any) => (
-          <PostCard key={item.id} post={item} posts={projects} />
-        ))
-      ) : (
-        <div className="flex w-full justify-center py-2 text-lg font-bold">
-          No projects
-        </div>
-      )}
-    </div>,
   ],
 });
 
 const PageContents = ({ page }: Props) => {
-  const { data, error, isLoading } = useSWR(fetchPagePosts(page.pageId));
+  const { data, error, isLoading } = useSWR(page.pageId, fetchPagePosts);
 
-  if (error) {
+  if (error || !data) {
     return (
-      <div className="w-full flex-col space-y-10">
+      <div className="w-full flex-col items-center justify-center space-y-10">
         <Card className="w-11/12 max-w-2xl">
           <CardHeader>
             <CardTitle>About</CardTitle>
@@ -67,9 +58,12 @@ const PageContents = ({ page }: Props) => {
             </p>
           </CardContent>
         </Card>
-        <span>
-          Display Page Memberships here. This is a placeholder for now.
-        </span>
+        <div className="flex items-center justify-center space-x-10">
+          {page.Membership &&
+            page.Membership.map((item: Membership, index: number) => (
+              <MembershipCardSmall key={index} membership={item} />
+            ))}
+        </div>
       </div>
     );
   }

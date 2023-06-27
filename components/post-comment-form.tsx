@@ -8,7 +8,7 @@ import {
   FormField,
   FormItem,
   FormMessage,
-} from "@/components/react-hook-form/form";
+} from "@/components/ui/form";
 import { Input } from "./ui/input";
 import { Button } from "./ui/button";
 
