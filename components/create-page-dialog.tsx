@@ -32,6 +32,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+import { fetchUserPage } from "@/app/context/get-user-page.action";
 
 export const pageFormSchema = z.object({
   name: z.string().min(3, "minimum of 3 characters required"),
@@ -42,7 +43,7 @@ type Props = {};
 
 export default function CreatePageDialog({}: Props) {
   const [open, setOpen] = useState(false);
-  const { currentUser } = useContext(AuthContext);
+  const { currentUser, setCurrentUserPage } = useContext(AuthContext);
   const form = useForm<PageFormValues>({
     resolver: zodResolver(pageFormSchema),
     defaultValues: {
@@ -70,6 +71,7 @@ export default function CreatePageDialog({}: Props) {
         toast({
           title: "Page Created Successfully",
         });
+        // setCurrentUserPage(await fetchUserPage(currentUser.id))
       } else if (status.toString().startsWith("4")) {
         toast({
           title: "Page Creation Failed",
